@@ -1,0 +1,71 @@
+<md-content md-theme="docs-dark" layout-gt-sm="column" layout-padding>
+    <div>
+      <form name="userForm">
+      <md-input-container>
+        <label>Name</label>
+        <input ng-model="userauthi.name">
+      </md-input-container>
+       <md-input-container>
+        <label>Designation1</label>
+        <input ng-model="userauthi.designation">
+      </md-input-container>
+     
+    <md-button class="md-fab" aria-label="Eat cake" ngf-select ng-model="picFile" accept="image/*">
+            <i class="fa fa-lg fa-file"></i>
+
+        </md-button>
+        <md-button ng-if="picFile" class="md-fab md-primary md-hue-4" aria-label="Eat cake" ng-click="upload(croppedDataUrl)" style="background:#795548;">
+            <i class="fa fa-lg fa-upload"></i>
+
+        </md-button>
+         <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
+             class="cropArea" style="width:500px; height:500px">
+            <img-crop image="picFile  | ngfDataUrl"                 
+            result-image="croppedDataUrl" result-image-quality="0.8" ng-init="croppedDataUrl=''"  change-on-fly="true">
+            </img-crop>
+       <!--  <button ng-click="upload(croppedDataUrl)">Submit</button> -->
+     <!--   <form> <span class="progress" ng-show="progress >= 0">
+          <div style="width:{{progress}}" ng-bind="progress + '%'"></div></span>
+       </form> -->
+       
+    </div>
+      
+        <div layout-gt-xs="row">
+          <md-datepicker ng-model="userauthi.birth" md-placeholder="Date Of Birth">
+          </md-datepicker>
+        </div>
+        <div layout-gt-sm="row">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Phone Number</label>
+            <input ng-model="userauthi.number" type="number">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>LinkedIn Link</label>
+            <input ng-model="userauthi.linkedin">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Email</label>
+            <input ng-model="userauthi.email">
+          </md-input-container>
+          <label>DesignationTwo</label>
+            <input ng-model="userauthi.designationtwo" type="text">
+          </md-input-container>
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>About</label>
+             <textarea ng-model="userauthi.about" md-maxlength="200" rows="5" md-select-on-focus></textarea>
+          </md-input-container>
+         
+
+        </div>
+        <md-input-container class="md-block">
+          <label>Facebook Link</label>
+          <input ng-model="userauthi.facebook">
+        </md-input-container>
+        <md-input-container class="md-block">
+        <label>Twitter Link</label>
+          <input ng-model="userauthi.twitter">
+        </md-input-container>
+        <md-button class="md-fab" ng-click="update(userauthi)">Update</md-button>
+      </form>
+    </div>
+  </md-content>

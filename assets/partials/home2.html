@@ -1,0 +1,38 @@
+<div layout="column"  layout-align="center center" layout-padding layout-margin>
+	<div ng-if="!userauthi.username" style="padding-top:10%">
+	<div style="font-size:50px">Member Login</div>
+					<form name="login">
+			<md-input-container>
+        <label>Username</label>
+        <input ng-model="user.username" name="username" type="text">
+      </md-input-container>
+      <md-input-container>
+        <label>Password</label>
+        <input ng-model="user.password" name="password" type="password">
+      </md-input-container>
+			
+			<div><button class="md-raised md-primary md-button md-ink-ripple" ng-click="authenticate(user)">Submit</button></div>
+	</form>
+	</div>
+	
+
+
+
+	<div ng-if="userauthi.username" style="padding-top:10%">
+
+		<div style="font-size:50px">Activities</div>
+		<div><a href="#/menu1"><md-button class="md-fab" aria-label="Eat cake" style="width:70px;height:70px">
+            <i class="fa fa-lg fa-file"></i>
+
+        </md-button></a>Create Articles</div>
+        <div><a href="#/form"><md-button class="md-fab" aria-label="Eat cake" style="width:70px; height:70px">
+            <i class="fa fa-lg fa-file"></i>
+
+        </md-button></a>Edit Profile</div>
+	
+		<div><md-button class="md-fab" aria-label="Eat cake" ng-click="logout()" style="width:70px; height:70px">
+            <i class="fa fa-lg fa-file"></i>
+
+        </md-button>Logout</div>
+	</div>
+</div>

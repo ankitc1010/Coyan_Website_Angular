@@ -1,0 +1,64 @@
+<style>
+.padding {
+	padding-top:10%;
+	background-color: #335778;
+	padding-bottom: 10%;
+}
+.border {
+	border-style:solid; border-width: 0 0 4px 0; border-color: white
+}
+.paddingbox {
+	padding:40px;
+}
+@media only screen and (max-width: 792px){
+	.border {
+		border:0;
+	}
+	.paddingbox {
+		padding:10px;
+	}
+}
+
+</style>
+<div flex class="awesome about box" md-ink-ripple="white" layout="column" layout-align="end start">
+	<P class="awesomeheading">ABOUT US</P>
+</div>
+
+<div class="padding shadow" layout="row" layout-sm="column" layout-xs="column">
+	<div flex layout="column" layout-align="center center">
+		<img src="assets/cool.gif" class="border">
+	</div>
+	<div flex layout="column" layout-align="center center">
+		<p style="color:white; padding:30px;">                        We are a selfless organisation working for the betterment of the society. Our selfless pursuits aims to act like a bridge in between existing such organisation. We pledge to distribute social-economic-technical access to all.</p>
+		<md-button class="md-raised md-warn" style="align-self:baseline; margin-left:30px;">JOIN US</md-button>
+	</div>
+</div>
+
+<div style="padding:10% 2% 10% 4%; font-size:180%">
+	Follow Coyan
+</div>
+
+<div layout="row" layout-xs="column" layout-sm="column" layout-align="center center">
+	<div class="paddingbox">
+		<a href="{{user.facebook}}" style="padding:0; margin:0;"><md-button class="md-fab shareshadow" aria-label="Facebook Link" style="width:90px; height:90px; background-color:#4099ff">
+            <i class="fa fa-twitter fa-5x" aria-hidden="true" style="padding-top: 14px;"></i>
+        </md-button></a> Twitter
+	</div>
+	<div class="paddingbox">
+		<a href="{{user.facebook}}" style="padding:0; margin:0;"><md-button class="md-fab shareshadow" aria-label="Facebook Link" style="width:90px; height:90px; background-color: #4862a3">
+            <i class="fa fa-facebook fa-5x" aria-hidden="true" style="padding-top: 14px;"></i>
+        </md-button></a> Facebook
+	</div>
+</div>
+<div layout="row" layout-xs="column" layout-sm="column" layout-align="center center">
+	<div class="paddingbox">
+		<a href="{{user.facebook}}" style="padding:0; margin:0;"><md-button class="md-fab shareshadow" aria-label="Facebook Link" style="width:90px; height:90px; background-color:#ef5350;">
+            <i class="fa fa-youtube fa-5x" aria-hidden="true" style="padding-top: 14px;"></i>
+        </md-button></a> Youtube
+	</div>
+	<div class="paddingbox">
+		<a href="{{user.facebook}}" style="padding:0; margin:0;"><md-button class="md-fab shareshadow" aria-label="Facebook Link" style="width:90px; height:90px; background-color:#0091ea;">
+            <i class="fa fa-linkedin fa-5x" aria-hidden="true" style="padding-top: 14px;"></i>
+        </md-button></a> LinkedIn
+	</div>
+</div>

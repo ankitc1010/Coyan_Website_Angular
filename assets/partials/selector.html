@@ -1,0 +1,52 @@
+<md-dialog aria-label="Eat Cake"  ng-cloak style=" max-width: 100%;    max-height: 100%;    width: 100%;    height: 100%;border-radius: 0;">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Crop Image</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <i class="fa fa-close"></i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content >
+    <div md-layout="row" md-layout-sm="row">
+    <md-progress-linear md-mode="query" ng-disabled="false"></md-progress-linear>
+    <md-button class="md-fab" aria-label="Eat cake" ngf-select ng-model="picFile" accept="image/*">
+            <i class="fa fa-lg fa-file"></i>
+
+        </md-button>
+
+    <md-button ng-if="picFile" class="md-fab md-primary md-hue-4" aria-label="Eat cake" ng-click="upload(croppedDataUrl)" style="background:#795548;">
+            <i class="fa fa-lg fa-upload"></i>
+
+        </md-button>
+
+    <md-button ng-if="article.img" class="md-fab md-success md-hue-4" aria-label="Eat cake" ng-click="cancel()" style="background:#CDDC39;">
+            <i class="fa fa-lg fa-check"></i>
+
+        </md-button>
+
+    
+    </div>    
+   <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
+             class="cropArea" style="width:320px; height:500px">
+            <img-crop image="picFile  | ngfDataUrl"                 
+            result-image="croppedDataUrl" area-type="rectangle" aspect-ratio="1.7" result-image-size='{w: 340,h: 200}' init-max-area="true" ng-init="croppedDataUrl=''"  change-on-fly="true">
+            </img-crop>
+       <!--  <button ng-click="upload(croppedDataUrl)">Submit</button> -->
+     <!--   <form> <span class="progress" ng-show="progress >= 0">
+          <div style="width:{{progress}}" ng-bind="progress + '%'"></div></span>
+       </form> -->
+       
+    </div>
+    
+     <div>
+           
+        </div>
+    }
+    }
+
+    </md-dialog-content>
+      
+</md-dialog>

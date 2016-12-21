@@ -1,0 +1,27 @@
+<div ng-controller="controller1 as ctrl" layout="row" layout-wrap layout-align="center center" style="background:#fbbb04;">
+<div ng-repeat="article in ctrl.product" >
+<md-card>
+        <md-card-header>
+          <md-card-avatar>
+            <img ng-src="{{article.profileimg}}">
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title" ng-bind="article.name"></span>
+            <span class="md-subhead" ng-bind="article.designation"></span>
+          </md-card-header-text>
+        </md-card-header>
+        <img ng-src="{{article.img}}" class="md-card-image" alt="Washed Out" width="50">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline" ng-bind="article.title"></span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p ng-bind="article.description">
+            
+          </p>
+          <md-button href="#/article/{{article._id}}">GOTO</md-button>
+        </md-card-content>
+      </md-card>
+      </div>
+</div>

@@ -1,0 +1,26 @@
+<md-content style="overflow:hidden;" >
+
+<div  style="height:200px; background:url('{{article[0].img}}'); background-size:cover;">
+      
+    </div>
+    <div layout="column" layout-padding>
+    <h1 ng-bind="article[0].title" style="margin:0; color:hsl(282, 65%, 59%)" ></h1>
+    <md-list-item class="md-2-line">
+          		<img ng-src="{{article[0].profileimg}}" class="md-avatar" alt="{{user.name}}" />
+          			<div class="md-list-item-text">
+            			<h3 style="color:orange;">{{article[0].name}}</h3>
+            			<p>{{article[0].designation}}</p>
+            			
+
+          			</div>
+
+        	</md-list-item>
+        	<div layout="row">
+            <i class="fa fa-facebook" aria-hidden="true" style="padding-left:8px"></i>
+            <i class="fa fa-twitter" aria-hidden="true" style="padding-left:8px"></i>
+            <i class="fa fa-google" aria-hidden="true" style="padding-left:8px"></i>
+            <i class="fa fa-linkedin" aria-hidden="true" style="padding-left:8px"></i>
+        </div>
+<div ng-include="article[0].templateUrl"></div>
+</div>
+</md-content>

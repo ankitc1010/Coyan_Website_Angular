@@ -1,0 +1,21 @@
+<div flex class="md-whiteframe-24dp awesome members box" md-ink-ripple="white" layout="column" layout-align="end start">
+	<P class="awesomeheading">NATIONAL FELLOWS</P>
+</div>
+<div flex class="shadow">
+<md-subheader class="md-no-sticky">Something Cool</md-subheader>
+<div ng-controller="UserDisplayController" layout="column" layout-padding>
+		
+		<div ng-repeat="user in users" class="boxo"> 
+			<md-list-item class="md-2-line">
+          		<img ng-src="{{user.img}}" class="md-avatar" alt="{{user.name}}" />
+          			<a href="#user/{{user._id}}" onclick="membertemplate()" style="text-decoration: initial;"><div class="md-list-item-text" style="color: black; padding-top: 30px;">
+            			<h3>{{user.name}}</h3>
+            			<p style="color:rgba(0,0,0,0.54);">{{user.email}}</p>
+          			</div></a>
+        	</md-list-item>
+			
+		</div>
+		
+
+</div>
+</div>

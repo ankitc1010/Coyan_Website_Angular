@@ -1,0 +1,149 @@
+<style type="text/css">
+  .container-box {
+    position:relative;
+}
+.container-box img {
+    
+   
+    position:absolute;
+    top:270px;
+    left:10%;
+    border:3px solid #fff
+}
+
+
+
+.main-container {
+  background: white;
+  position: relative;
+}
+
+.main-container:before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -113px;
+  width: 100%;
+  height: 227px;
+  background: white;
+  -webkit-transform: skewY(-10deg);
+  -moz-transform: skewY(-10deg);
+  -ms-transform: skewY(-10deg);
+  -o-transform: skewY(-10deg);
+  transform: skewY(-10deg);
+  -webkit-backface-visibility: hidden;
+  -webkit-box-shadow: 2px -6px 19px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 2px -6px 19px 0px rgba(0,0,0,0.75);
+box-shadow: 2px -6px 19px 0px rgba(0,0,0,0.75);
+}
+.imageshadow {
+  -webkit-box-shadow: 5px -1px 42px 20px rgba(0,0,0,0.75);
+-moz-box-shadow: 5px -1px 42px 20px rgba(0,0,0,0.75);
+box-shadow: 5px -1px 42px 20px rgba(0,0,0,0.75);
+}
+.shareshadow {
+  -webkit-box-shadow: 1px -1px 42px -4px rgba(0,0,0,0.75);
+-moz-box-shadow: 1px -1px 42px -4px rgba(0,0,0,0.75);
+box-shadow: 1px -1px 42px -4px rgba(0,0,0,0.75);
+}
+section {
+  
+  padding: 20px;
+  position: relative;
+  max-width:500PX;
+  float: right;
+}
+@media only screen and (max-width: 792px){
+    section {
+  
+  left: 0px;
+  
+  padding-top: 140px;
+  position: relative;
+  max-width:90%;
+  
+}
+  }
+</style>
+<div style="background-color:#455a64;">
+
+<div class="container-box" >
+<div style="width: 100%; height: 400px; background-color:#455a64;">
+  <div style="position:absolute; left:4%; padding:30px; padding-top:90px;"><p style="margin:0px; font-size:300%; color:white;">{{user.name}}</p> <md-chips>
+      
+      <md-chip><p style="margin-top:0px">NATIONAL FELLOW</p></div></md-chip>
+      </md-chips>
+  
+</div>
+     
+    <div class="container">
+
+  <main class="main" >
+    <div class="main-container"><section>
+     <p style="white-space: pre-line; color: #193c3c; padding:15px; background-color:#f9faff; -webkit-box-shadow: 7px 11px 52px 17px rgba(201,207,188,1);
+-moz-box-shadow: 7px 11px 52px 17px rgba(201,207,188,1);
+box-shadow: 7px 11px 52px 17px rgba(201,207,188,1);" md-ink-ripple="white"><span style="font-size:40px">"</span>{{user.about}}<span style="font-size:40px"> "</span></p>
+  <div layout="row" layout-align="center center" layout-padding layout-margin>
+    <a href="{{user.facebook}}" style="padding:0; margin:0;"><md-button class="md-fab shareshadow" aria-label="Facebook Link" style="width:90px; height:90px;">
+            <i class="fa fa-facebook fa-5x" aria-hidden="true" style="padding-top: 14px;"></i>
+        </md-button></a>
+
+        <a href="{{user.twitter}}" style="padding:0; margin:0;"><md-button class="md-fab md-primary shareshadow" aria-label="Twitter Link" style="width:90px; height:90px;">
+            <i class="fa fa-twitter fa-5x" aria-hidden="true" style="padding-top: 14px;"></i>
+        </md-button></a>
+
+        <a href="{{user.linkedin}}" style="padding:0; margin:0;"><md-button class="md-fab shareshadow" ng-disabled="true" aria-label="LinkedIn Link" style="width:90px; height:90px;">
+            <i class="fa fa-linkedin fa-5x" aria-hidden="true" style="padding-top: 14px;"></i>
+        </md-button></a>
+
+  </div>
+  <div ng-controller="controller1 as ctrl">
+  <h2 ng-if="equals({}, ctrl.product)">Articles Published</h2>
+  <div layout="row" layout-xs="column" layout-wrap layout-align="center center" style="">
+  
+<div ng-repeat="article in ctrl.product" >
+
+<div class="hello box" style="width:80% ; background:#0bc770; color:#fff; padding:20px;" ng-if="$parent.user.name == article.name">
+            <span class="md-headline" ng-bind="article.title"></span><br>-
+            <span class="md-subhead" ng-bind="article.name"></span><br>
+            <p ng-bind="article.description"></p>
+            <md-button href="#/article/{{article._id}}"><i class="fa fa-arrow-circle-right" aria-hidden="true"></i> GOTO</md-button>
+          </div>
+<!-- <md-card>
+        <md-card-header>
+          <md-card-avatar>
+            <img ng-src="{{article.profileimg}}">
+          </md-card-avatar>
+          <md-card-header-text>
+            <span class="md-title" ng-bind="article.name"></span>
+            <span class="md-subhead" ng-bind="article.designation"></span>
+          </md-card-header-text>
+        </md-card-header>
+        <img ng-src="{{article.img}}" class="md-card-image" alt="Washed Out" width="50">
+        <md-card-title>
+          <md-card-title-text>
+            <span class="md-headline" ng-bind="article.title"></span>
+          </md-card-title-text>
+        </md-card-title>
+        <md-card-content>
+          <p ng-bind="article.description">
+            
+          </p>
+          <md-button href="#/article/{{article._id}}">GOTO</md-button>
+        </md-card-content>
+      </md-card> -->
+      </div>
+</div></section>
+    </div>
+   </main>
+
+</div>
+    <div class="image">
+        <img ng-src="{{user.img}}" class="imageshadow" style="border-radius:120px; border-style: solid;
+    border-width: 15px; border-color: white; ">
+    </div>
+</div>
+	
+	
+
+</div>
