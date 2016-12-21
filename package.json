@@ -28,7 +28,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node index.js"
   },
   "author": "Ankit Chauhan",
   "license": "ISC"
