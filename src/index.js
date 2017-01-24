@@ -10,7 +10,7 @@ app.config(function($routeProvider, $mdThemingProvider){
 		})
 		.when("/menu2",{
 			templateUrl:"assets/partials/home1.html"
-			
+
 		})
     .when("/about", {
       templateUrl:"assets/partials/about.html"
@@ -59,7 +59,7 @@ app.config(function($routeProvider, $mdThemingProvider){
       $anchorScroll();
     };
   }])
- 
+
   .controller('maincontroller',['$http','$scope','$window','$location','$mdToast','Upload','$timeout',function($http,$scope,$window,$location,$mdToast,Upload,$timeout){
     $scope.userauthi={};
     $scope.user  = {username:'',password:''};
@@ -69,12 +69,12 @@ app.config(function($routeProvider, $mdThemingProvider){
     };
     $scope.logout=function(){
       $http.get("/logout").success(function(data){
-        
+
         $scope.userauthi={};
-        
-        
+
+
       }).error(function(data){
-        
+
       })
     };
     $scope.authenticate=function(user){
@@ -105,27 +105,57 @@ app.config(function($routeProvider, $mdThemingProvider){
                 console.log(response.data);
             });
         }, function (response) {
-            console.log(response.status 
+            console.log(response.status
                 + ': ' + response.data);
         }, function (evt) {
             $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
         });
     }
-    
+
   }])
-	
-	
+
+	.controller('registration', ['$http', '$mdToast','$scope', function($http, $mdToast, $scope){
+		var fellow = $scope;
+		fellow.unit ={};
+
+		fellow.generate = function() {
+			$http.post("/sendmail", fellow.unit).success(function(data){
+				fellow.anonymous= data.otp;
+
+			});
+		};
+		var updateScope = function() {
+			fellow.unit = {};
+			fellow.success = true;
+		}
+		fellow.validate = function(otp) {
+			if(fellow.anonymous == otp) {
+				$http.post("/api/fellows", fellow.unit).success(function(Data) {
+				$mdToast.show($mdToast.simple().textContent('Account Created'));
+
+					 updateScope();
+
+				}).error(function(error){
+
+				})
+			} else {
+
+			}
+		}
+	}])
+
+
 	.controller('controller1',['$http', '$interval','$mdToast', function($http,$interval,$mdToast,$location){
 		var store=this;
 		store.product=[];
 		store.number=0;
-    
+
 		$http.get("api/articles").success(function(data){
 			store.product=data;
 		});
 		$interval(function(){
-			store.number1= Math.floor(Math.random() * (store.product.length - 0)) + 0;      
-      store.number3=Math.floor(Math.random() * (store.product.length - 0)) + 0;      
+			store.number1= Math.floor(Math.random() * (store.product.length - 0)) + 0;
+      store.number3=Math.floor(Math.random() * (store.product.length - 0)) + 0;
       store.number5=Math.floor(Math.random() * (store.product.length - 0)) + 0;
 		},2000);
     $interval(function(){
@@ -133,11 +163,11 @@ app.config(function($routeProvider, $mdThemingProvider){
         store.number4=Math.floor(Math.random() * (store.product.length - 0)) + 0;
          store.number6=Math.floor(Math.random() * (store.product.length - 0)) + 0;
     },7000);
-	
+
 
 
   }])
-  
+
   .controller("UserDisplayController",['$http','$scope', function($http,$scope){
     $scope.users={};
     $http.get("/api/allusers").success(function(data){
@@ -149,43 +179,28 @@ app.config(function($routeProvider, $mdThemingProvider){
     $scope.user={};
     $http.post("api/user",$routeParams).success(function(data){
       $scope.user=data[0];
-      console.log(data[0]);
+
     }).error(function(data){
-      console.log(data);
+
     })
   }])
 
 
   .controller('ArticleDisplayController',['$http','$scope','$routeParams', function($http, $scope, $routeParams){
-        console.log($routeParams.id);
+
         $scope.article={};
         $http.post("api/articleget",$routeParams).success(function(data){
           $scope.article=data;
-          console.log(data);
+
         }).error(function(data){
           console.log(data);
         })
   }])
-// 	.directive('myDirective', function () {
-//   return {
-//     require: 'ngModel',
-//     link: function(scope, elem, attrs, ngModel) {
-//       scope.$watch(function (){
-//           return ngModel.$modelValue;
-//       }, function (v,o) {
-//           if(v!=o)
-//           {
-//           	elem.addClass("black");
-//           	setTimeout(function(){ elem.removeClass("black") }, 500);
-//           }
-//       })
-//     }
-//   };
-// })
+
 	.controller('controller2',['$scope', '$http','$mdToast', '$mdMedia', '$mdDialog', 'Upload', '$timeout','$location',function($scope, $http, $mdToast, $mdMedia, $mdDialog, Upload, $timeout,$location){
 		var store=$scope;
 		$scope.progress="";
-		$scope.goToPage = function () {        
+		$scope.goToPage = function () {
     $location.path("/menu2");
 };
 		$scope.html="";
@@ -196,17 +211,17 @@ app.config(function($routeProvider, $mdThemingProvider){
     $scope.article.profileimg=$scope.$parent.userauthi.img;
     $scope.allarticles=undefined;
 
-  
 
 
-		
+
+
 		var last = {
       bottom: false,
       top: true,
       left: false,
       right: true
     };
-    
+
   //   this.toastPosition = angular.extend({},last);
   // this.getToastPosition = function() {
   //   sanitizePosition();
@@ -235,7 +250,7 @@ app.config(function($routeProvider, $mdThemingProvider){
     var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'))  && $scope.customFullscreen;
     $mdDialog.show({
 
-      
+
       templateUrl: 'assets/partials/selector.html',
       parent: angular.element(document.body),
       targetEvent: ev,
@@ -265,14 +280,14 @@ $scope.uploadFiles = function(file, errFiles) {
             file.upload.then(function (response) {
                 $timeout(function () {
                     $scope.article.templateUrl=response.data;
-                    console.log(response.data);
-                    
+
+
                 });
             }, function (response) {
                 if (response.status > 0)
-                    console.log(response.status + ': ' + response.data);
+
             }, function (evt) {
-                file.progress = Math.min(100, parseInt(100.0 * 
+                file.progress = Math.min(100, parseInt(100.0 *
                                          evt.loaded / evt.total));
             });
 
@@ -290,32 +305,28 @@ $scope.uploadFiles = function(file, errFiles) {
         }).then(function (response) {
             $timeout(function () {
                 $scope.article.img=response.data;
-                console.log(response.data);
+
             });
         }, function (response) {
-            console.log(response.status 
-                + ': ' + response.data);
+
         }, function (evt) {
             $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
         });
     }
-    
+
 
 
   $scope.submit= function(){
-  	
-		
+
+
   	console.log($scope.article);
   	$http.post("/api/articles",$scope.article).then(function(data){
   		console.log("awesome");
       $scope.article={};
-    	
+
   	}, function(){
   		console.log("error shit");
   	});
   }
 
 	}]);
-
-
-

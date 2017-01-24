@@ -1,3 +1,41 @@
-<DIV style="background-color:#2dc0d7; height:100%" class="box"><center><img src="assets/user-min.png"><br>
-<h1>COMING SOON!!</h1></center>
-</DIV>
+<div layout="column" ng-controller="registration" layout-align="center center" layout-padding layout-margin>
+	<div style="padding-top:10%" ng-if="!success" >
+	<div style="font-size:50px">Registrations</div>
+					<form name="login">
+			<md-input-container ng-show="!anonymous">
+        <label>Name</label>
+        <input ng-model="unit.name" name="username" type="text">
+      </md-input-container>
+      <md-input-container ng-show="!anonymous">
+        <label>Email Id</label>
+        <input ng-model="unit.email" name="password" type="text">
+      </md-input-container>
+      <md-input-container ng-show="!anonymous">
+        <label>Phone Number</label>
+        <input ng-model="unit.phoneNumber" name="password" type="text">
+      </md-input-container>
+      <md-input-container ng-show="!anonymous">
+        <label>Age</label>
+        <input ng-model="unit.age" name="password" type="text">
+      </md-input-container>
+
+
+
+			<button ng-if="!anonymous" ng-click="generate(e)" class="md-raised md-primary md-button md-ink-ripple">Generate OTP</button>
+
+
+
+      <md-input-container ng-show="anonymous">
+        <label>OTP</label>
+        <input type="text" ng-model="otp">
+      </md-input-container>
+
+      <button ng-show="anonymous" ng-click="validate(otp)" class="md-raised md-success md-button md-ink-ripple">SUBMIT</button>
+
+	</form>
+	</div>
+  <div style="padding-top:10%" ng-if="success">
+    	<div style="font-size:50px">Welcome to the Family</div>
+      You will be contacted soon by us.
+  </div>
+</div>

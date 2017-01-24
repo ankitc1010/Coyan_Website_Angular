@@ -4,12 +4,12 @@
 	<title>
 			Coyan
 	</title>
-<!-- ::::::::   ::::::::  :::   :::   :::     ::::    ::: 
-	:+:    :+: :+:    :+: :+:   :+: :+: :+:   :+:+:   :+: 
-	+:+        +:+    +:+  +:+ +:+ +:+   +:+  :+:+:+  +:+ 
-	+#+        +#+    +:+   +#++: +#++:++#++: +#+ +:+ +#+ 
-	+#+        +#+    +#+    +#+  +#+     +#+ +#+  +#+#+# 
-	#+#    #+# #+#    #+#    #+#  #+#     #+# #+#   #+#+# 
+<!-- ::::::::   ::::::::  :::   :::   :::     ::::    :::
+	:+:    :+: :+:    :+: :+:   :+: :+: :+:   :+:+:   :+:
+	+:+        +:+    +:+  +:+ +:+ +:+   +:+  :+:+:+  +:+
+	+#+        +#+    +:+   +#++: +#++:++#++: +#+ +:+ +#+
+	+#+        +#+    +#+    +#+  +#+     +#+ +#+  +#+#+#
+	#+#    #+# #+#    #+#    #+#  #+#     #+# #+#   #+#+#
 	 ########   ########     ###  ###     ### ###    ####  -->
 	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui" />
 	<style type="text/css">
@@ -25,14 +25,14 @@
 	<script type="text/javascript" src="node_modules/ng-img-crop-full-extended/compile/minified/ng-img-crop.js"></script>
 
 
-		
+
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="node_modules/ng-img-crop-full-extended/compile/minified/ng-img-crop.css">
 	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<script type="text/javascript" src="src/index.js"></script>
 	<style>
-	
+
 	body {
     overflow-x:hidden !important;
     overflow-y:scroll;
@@ -40,9 +40,9 @@
     height: 100vh;
 }
 .box{
-	box-shadow: 1px 10px 31px #333333; 
--webkit-box-shadow: 1px 10px 31px #333333; 
--moz-box-shadow: 1px 10px 31px #333333; 
+	box-shadow: 1px 10px 31px #333333;
+-webkit-box-shadow: 1px 10px 31px #333333;
+-moz-box-shadow: 1px 10px 31px #333333;
 
 }
 .boxo {
@@ -53,13 +53,13 @@ box-shadow: 2px 10px 22px 4px rgba(8,8,8,0.31);
 .homebox{
 	width: 50%;
 	height:37vw;
-	
+
 
 }
 .homeimage {
 	width: 63%;
 	padding-top: 5%;
-	
+
 }
 @media only screen and (max-width: 792px){
 .homebox {
@@ -105,7 +105,7 @@ box-shadow: 3px 2px 19px 9px rgba(0,0,0,0.75); }
   opacity:0;
   transform: translateX(-400px);
 }
-md-button:active { 
+md-button:active {
     background-color: white;
 }
 div.ng-enter.ng-enter-active {
@@ -137,7 +137,7 @@ div.ng-leave.ng-leave-active {
 	</style>
 
 <script type="text/javascript">
-	
+
 	function home() {
 		var toolba=document.getElementById('toolbar');
 		toolba.classList.remove('members', 'about', 'membertemplate', 'yellow');
@@ -181,8 +181,10 @@ div.ng-leave.ng-leave-active {
 		</md-list-item>
 		<md-list-item><a href="#project" onclick="yellow()"><md-button style="color:white;">PROJECT</md-button></a>
 		</md-list-item>
+		<md-list-item><a href="#join" onclick="home()"><md-button style="color:white;">REGISTER</md-button></a>
+		</md-list-item>
 </md-list>
-	
+
 </md-toolbar>
 
 

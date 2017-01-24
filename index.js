@@ -9,6 +9,8 @@ var uploadhtml = multer({ dest: 'assets/partials/html' });
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var passportLocalMongoose = require('passport-local-mongoose');
+var api_key = 'key-f31b3e83f39afcc3d610b35cbb5a0aa5';
+var Mailgun = require('mailgun').Mailgun;
 var User =require('./models/user');
 app.use(require("express-session")({
 	secret:"Awesomeness to be achieved",
@@ -36,6 +38,13 @@ var ArticleSchema = new mongoose.Schema({
 	templateUrl:String
 
 });
+var FellowSchema = new mongoose.Schema({
+  name:String,
+  email:String,
+  phoneNumber: String,
+  age: String
+});
+var Fellow =  mongoose.model("fellow", FellowSchema);
 var Article=mongoose.model("article", ArticleSchema);
 
 
@@ -90,7 +99,7 @@ app.get('/logout', function(req,res){
 app.post('/update',function(req,res){
 	var user=req.body;
 	delete user._id;
-	console.log(user);
+
 	User.update({username:user.username},{$set:user},function(err,usero){
 		if(err){
 			console.log(err);
@@ -114,8 +123,8 @@ app.get("/api/articles", function(req,res){
 		res.send(article);
 		}
 	});
-	
-	
+
+
 });
 app.get("/api/allusers", function(req,res){
 	User.find({},function(err,user){
@@ -164,7 +173,16 @@ app.post("/api/images",upload.any(), function(req,res){
 app.post("/api/html",uploadhtml.any(), function(req,res){
 	res.send(req.files[0].path);
 })
-
+app.post('/api/fellows', function(req,res){
+  Fellow.create(req.body, function(err, fellow) {
+    if(err) {
+      console.log(err);
+    } else {
+      console.log(fellow);
+      res.send(true);
+    }
+  });
+});
 app.post("/api/articles", function(req,res){
 	Article.create(req.body,function(err,article){
 		if(err){
@@ -172,10 +190,32 @@ app.post("/api/articles", function(req,res){
 		}
 		else{
 			console.log(article);
-			res.send(true);
+			res.json({status: true});
 		}
 	})
+});
+
+app.post('/sendmail', function(req,res) {
+  var mg = new Mailgun(api_key);
+
+  var object = req.body.email;
+  var otp = Math.floor(Math.random() * (10000 - 1000) + 1000);
+
+  var string = "Your otp for registration is " + otp;
+mg.sendText('Coyan Registration <register@mg.coyan.in>', [object],
+'OTP for the registration',
+string,
+'', {},
+function(err) {
+  if (err) console.log('Oh noes: ' + err);
+  else     res.json({otp: otp});
+});
 })
+
+
 app.listen(process.env.PORT, process.env.IP, function(){
 	console.log("server started");
 })
+// app.listen('3000', function(){
+// 	console.log("server started");
+// })
