@@ -136,10 +136,10 @@ app.config(function($routeProvider, $mdThemingProvider){
 					 updateScope();
 
 				}).error(function(error){
-
+					console.log(error);
 				})
 			} else {
-
+			
 			}
 		}
 	}])
@@ -179,24 +179,39 @@ app.config(function($routeProvider, $mdThemingProvider){
     $scope.user={};
     $http.post("api/user",$routeParams).success(function(data){
       $scope.user=data[0];
-
+      console.log(data[0]);
     }).error(function(data){
-
+      console.log(data);
     })
   }])
 
 
   .controller('ArticleDisplayController',['$http','$scope','$routeParams', function($http, $scope, $routeParams){
-
+        console.log($routeParams.id);
         $scope.article={};
         $http.post("api/articleget",$routeParams).success(function(data){
           $scope.article=data;
-
+          console.log(data);
         }).error(function(data){
           console.log(data);
         })
   }])
-
+// 	.directive('myDirective', function () {
+//   return {
+//     require: 'ngModel',
+//     link: function(scope, elem, attrs, ngModel) {
+//       scope.$watch(function (){
+//           return ngModel.$modelValue;
+//       }, function (v,o) {
+//           if(v!=o)
+//           {
+//           	elem.addClass("black");
+//           	setTimeout(function(){ elem.removeClass("black") }, 500);
+//           }
+//       })
+//     }
+//   };
+// })
 	.controller('controller2',['$scope', '$http','$mdToast', '$mdMedia', '$mdDialog', 'Upload', '$timeout','$location',function($scope, $http, $mdToast, $mdMedia, $mdDialog, Upload, $timeout,$location){
 		var store=$scope;
 		$scope.progress="";
@@ -280,12 +295,12 @@ $scope.uploadFiles = function(file, errFiles) {
             file.upload.then(function (response) {
                 $timeout(function () {
                     $scope.article.templateUrl=response.data;
-
+                    console.log(response.data);
 
                 });
             }, function (response) {
                 if (response.status > 0)
-
+                    console.log(response.status + ': ' + response.data);
             }, function (evt) {
                 file.progress = Math.min(100, parseInt(100.0 *
                                          evt.loaded / evt.total));
@@ -305,10 +320,11 @@ $scope.uploadFiles = function(file, errFiles) {
         }).then(function (response) {
             $timeout(function () {
                 $scope.article.img=response.data;
-
+                console.log(response.data);
             });
         }, function (response) {
-
+            console.log(response.status
+                + ': ' + response.data);
         }, function (evt) {
             $scope.progress = parseInt(100.0 * evt.loaded / evt.total);
         });

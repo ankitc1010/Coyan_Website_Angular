@@ -99,7 +99,7 @@ app.get('/logout', function(req,res){
 app.post('/update',function(req,res){
 	var user=req.body;
 	delete user._id;
-
+	console.log(user);
 	User.update({username:user.username},{$set:user},function(err,usero){
 		if(err){
 			console.log(err);
@@ -197,7 +197,7 @@ app.post("/api/articles", function(req,res){
 
 app.post('/sendmail', function(req,res) {
   var mg = new Mailgun(api_key);
-
+  console.log(req.body.email);
   var object = req.body.email;
   var otp = Math.floor(Math.random() * (10000 - 1000) + 1000);
 
