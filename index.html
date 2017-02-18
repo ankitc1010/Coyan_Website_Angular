@@ -19,7 +19,7 @@
 	<script type="text/javascript" src="node_modules/angular-aria/angular-aria.min.js"></script>
 	<script type="text/javascript" src="node_modules/angular-material/angular-material.min.js"></script>
 	<script src="node_modules/angular-touch/angular-touch.min.js"></script>
-	<link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.css">
+	<link rel="stylesheet" type="text/css" href="node_modules/angular-material/angular-material.min.css">
 	<script type="text/javascript" src="node_modules/angular-route/angular-route.min.js"></script>
 	<script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
 	<script type="text/javascript" src="node_modules/ng-img-crop-full-extended/compile/minified/ng-img-crop.js"></script>
@@ -126,7 +126,7 @@ div.ng-leave.ng-leave-active {
 	background-color: #6A1B9A !important;
 }
 .members {
-	background-color: darkgreen !important;
+	background-color: black !important;
 }
 .about {
 	background-color: #ea4335 !important;
@@ -171,17 +171,23 @@ div.ng-leave.ng-leave-active {
 <md-toolbar id="toolbar" md-ink-ripple="white" class="menu default box" layout="column"  ng-if="true" style=" background-color:notinherit; overflow-x:auto; z-index: 3;" >
 <md-list layout="row" layout-align="space-between">
 <md-list-item style="padding-bottom:9px;"><h4>COYAN</h4></md-list-item>
-<md-list layout="row" layout-align="center center">
+<md-list layout="row" layout-align="center center" style="    margin-left: 122px;">
 		<md-list-item><a href="#/" onclick="home()"><md-button clickLink style="color:white;">HOME</md-button></a>
 		</md-list-item>
-		</md-list-item>
+
 		<md-list-item><a href="#about" clickLink onclick="about()" style="color:white;"><md-button>ABOUT US</md-button></a>
 		</md-list-item>
-		<md-list-item><a href="#allusers" onclick="members()"><md-button style="color:white;">FELLOWS</md-button></a>
+		<md-list-item><a href="#events" onclick="members()"><md-button style="color:white;">EVENTS</md-button></a>
 		</md-list-item>
+
+
 		<md-list-item><a href="#project" onclick="yellow()"><md-button style="color:white;">PROJECT</md-button></a>
 		</md-list-item>
-		
+		<md-list-item><a href="#contactus" onclick="home()"><md-button style="color:white;">CONTACT US</md-button></a>
+		</md-list-item>
+		<!-- <md-list-item><a href="#allusers" onclick="members()"><md-button style="color:white;">FELLOWS</md-button></a>
+		</md-list-item> -->
+
 </md-list>
 
 </md-toolbar>

@@ -1,4 +1,6 @@
-<div ng-controller="controller1 as ctrl" layout="row" layout-wrap layout-align="center center" style="background:#fbbb04;">
+<div ng-controller="controller1 as ctrl" layout="row" layout-wrap layout-align="center center" style="background:url('./assets/blah.jpg');
+    background-attachment: fixed; background-type:cover;
+">
 <div ng-repeat="article in ctrl.product" >
 <md-card>
         <md-card-header>
@@ -18,7 +20,7 @@
         </md-card-title>
         <md-card-content>
           <p ng-bind="article.description">
-            
+
           </p>
           <md-button href="#/article/{{article._id}}">GOTO</md-button>
         </md-card-content>

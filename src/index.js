@@ -21,7 +21,10 @@ app.config(function($routeProvider, $mdThemingProvider){
     .when("/join", {
       templateUrl:"assets/partials/join.html"
     })
-		.when("/menu3",{
+		.when("/events", {
+      templateUrl:"assets/partials/events.html"
+    })
+		.when("/login",{
 			templateUrl:"assets/partials/home2.html"
 		})
     .when("/form",{
@@ -33,6 +36,12 @@ app.config(function($routeProvider, $mdThemingProvider){
     .when("/allusers",{
       templateUrl:"assets/partials/allusers.html"
     })
+		.when("/techartha", {
+			templateUrl: "assets/partials/techartha.html"
+		})
+		.when("/contactus", {
+			templateUrl: "assets/partials/contactus.html"
+		})
     .when("/user/:id",{
       templateUrl:"assets/partials/usertemplate.html",
       controller:"UserIndividualController",
@@ -59,6 +68,33 @@ app.config(function($routeProvider, $mdThemingProvider){
       $anchorScroll();
     };
   }])
+
+	.controller('techArtha', ['$http', '$scope', '$mdToast', function($http, $scope, $mdToast) {
+		$scope.display = function() {
+			console.log($scope.useri);
+			$http.post('/techArthaRegister', $scope.useri).success(function(response) {
+				  $mdToast.show($mdToast.simple().textContent('Registered'));
+					$scope.useri= null;
+			}).catch(function(error){
+				console.log(error);
+			})
+		}
+	}])
+
+	.controller('contactUs', ['$http', '$scope', '$mdToast', function($http, $scope, $mdToast) {
+
+
+
+		$scope.sendMail = function() {
+			console.log($scope.userioz);
+			$http.post('/contactUs', $scope.userioz).success(function(response) {
+				  $mdToast.show($mdToast.simple().textContent('Sent'));
+					$scope.userioz= null;
+			}).catch(function(error){
+				console.log(error);
+			})
+		}
+	}])
 
   .controller('maincontroller',['$http','$scope','$window','$location','$mdToast','Upload','$timeout',function($http,$scope,$window,$location,$mdToast,Upload,$timeout){
     $scope.userauthi={};
@@ -117,7 +153,9 @@ app.config(function($routeProvider, $mdThemingProvider){
 	.controller('registration', ['$http', '$mdToast','$scope', function($http, $mdToast, $scope){
 		var fellow = $scope;
 		fellow.unit ={};
-
+		fellow.display = function(){
+			fellow.showIt = true;
+		}
 		fellow.generate = function() {
 			$http.post("/sendmail", fellow.unit).success(function(data){
 				fellow.anonymous= data.otp;
@@ -139,7 +177,7 @@ app.config(function($routeProvider, $mdThemingProvider){
 					console.log(error);
 				})
 			} else {
-			
+
 			}
 		}
 	}])
@@ -191,7 +229,9 @@ app.config(function($routeProvider, $mdThemingProvider){
         $scope.article={};
         $http.post("api/articleget",$routeParams).success(function(data){
           $scope.article=data;
-          console.log(data);
+					console.log(data);
+					$scope.articleTime=(new Date($scope.article[0].created)).toDateString();
+
         }).error(function(data){
           console.log(data);
         })
@@ -335,7 +375,9 @@ $scope.uploadFiles = function(file, errFiles) {
   $scope.submit= function(){
 
 
-  	console.log($scope.article);
+
+		$scope.article.created = Date.now();
+		console.log($scope.article);
   	$http.post("/api/articles",$scope.article).then(function(data){
   		console.log("awesome");
       $scope.article={};

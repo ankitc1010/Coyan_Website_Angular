@@ -1,0 +1,29 @@
+<div  layout="column">
+<center>
+  <div ng-controller="contactUs" style="padding-top:10%">
+  <div style="font-size:60px">Contact Us</div>
+
+  <i class="fa fa-phone" aria-hidden="true" style="font-size:200%"></i> <span style="font-size:200%"> 8951553839</span><br><br>
+  <i class="fa fa-envelope-o" aria-hidden="true" style="font-size:200%"></i><span style="font-size:200%"> contact@coyan.in</span>
+</md-input-container>
+   <form ng-submit="sendMail()">
+<md-input-container>
+ <label>Name</label>
+ <input ng-model="userioz.name" name="username" type="text" required>
+</md-input-container>
+<md-input-container>
+ <label>Email</label>
+ <input ng-model="userioz.email" name="email" type="email" required>
+</md-input-container>
+  <md-input-container class="md-block" style="width:70%">
+         <label>Your Say</label>
+         <textarea ng-model="userioz.text" md-maxlength="150" rows="5" md-select-on-focus required></textarea>
+
+
+      <div><button class="md-raised md-primary md-button md-ink-ripple" type="submit">Submit</button></div>
+  </form>
+  </div>
+
+
+</center>
+</div>

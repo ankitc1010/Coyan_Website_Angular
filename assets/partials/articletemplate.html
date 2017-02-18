@@ -1,26 +1,105 @@
-<md-content style="overflow:hidden;" >
+<md-content style="overflow:hidden;">
+    <style>
+        .content {
+            width: 70%;
+        }
 
-<div  style="height:200px; background:url('{{article[0].img}}'); background-size:cover;">
-      
-    </div>
-    <div layout="column" layout-padding>
-    <h1 ng-bind="article[0].title" style="margin:0; color:hsl(282, 65%, 59%)" ></h1>
-    <md-list-item class="md-2-line">
-          		<img ng-src="{{article[0].profileimg}}" class="md-avatar" alt="{{user.name}}" />
-          			<div class="md-list-item-text">
-            			<h3 style="color:orange;">{{article[0].name}}</h3>
-            			<p>{{article[0].designation}}</p>
-            			
+        .content p {
+            font-size: 18px;
+            line-height: 1.58;
+            letter-spacing: -.004em;
+            clear: left;
+            padding-top: 5px;
+            padding-bottom: 50px;
+            margin:0;
+        }
 
-          			</div>
+        .quote {
+          font-style: italic;
+          color: rgba(0,0,0,.44);
+          padding-left: 4px;
+          padding-right: 4px;
+        }
 
-        	</md-list-item>
-        	<div layout="row">
-            <i class="fa fa-facebook" aria-hidden="true" style="padding-left:8px"></i>
-            <i class="fa fa-twitter" aria-hidden="true" style="padding-left:8px"></i>
-            <i class="fa fa-google" aria-hidden="true" style="padding-left:8px"></i>
-            <i class="fa fa-linkedin" aria-hidden="true" style="padding-left:8px"></i>
+        .content h3 {
+            margin: 0;
+            font-size: 150%;
+        }
+
+        .content h1 {
+            margin: 0;
+            font-weight: 900;
+        }
+
+        .content a {
+            color: rgba(0, 0, 0, 1);
+        }
+
+        .firstLetter {
+            font-size: 54.85px;
+            padding-top: 3.5px;
+            margin-left: -4px;
+            margin-right: 6px;
+            letter-spacing: -.03em;
+            line-height: .83;
+            margin-bottom: -.08em;
+            display: block;
+            position: relative;
+            float: left;
+        }
+
+        .content h2 {
+            margin: 0;
+            color: rgba(0, 0, 0, .44);
+            font-weight: lighter;
+        }
+
+        @media only screen and (max-width: 800px) {
+            .content {
+                width: 95%;
+            }
+        }
+    </style>
+
+
+
+    <div layout="column" layout-align="center center" layout-padding>
+        <md-list-item class="md-2-line">
+            <img ng-src="{{article[0].profileimg}}" class="md-avatar" alt="{{user.name}}" style="width:60px; height:60px" />
+            <div class="md-list-item-text">
+                <h3 style="color:rgba(0, 0, 0, 0.8);">{{article[0].name}}</h3>
+                <p style=" font-size: 13px;line-height: 1.4;margin-top: 2px; color: rgba(0,0,0,.44);">National Fellow<br>{{articleTime}}</p>
+
+
+            </div>
+
+        </md-list-item>
+        <div class="content" layout-align="center center">
+           <img ng-src={{article[0].img}} style="    width: 100%;">
+            <h1 ng-bind="article[0].title"></h1>
+            <h2 ng-bind="article[0].subtitle"></h2>
         </div>
-<div ng-include="article[0].templateUrl"></div>
-</div>
+
+        </md-list-item>
+        <!-- <div class="content">
+
+            <p>
+                <span class="firstLetter">L</span>orem ipsum dolor sit amet, consectetur adipiscing elit. In <strong>venenatis</strong> id nulla sit amet ornare. Aenean eget eros turpis. Cras non lacinia nisl. Fusce auctor sapien sed lacinia mollis. Suspendisse
+                ut nibh nec massa placerat aliquet. Ut non ligula ut elit tristique sagittis vel eu velit. Mauris faucibus, ante lacinia malesuada condimentum, ligula neque aliquam purus, et consequat libero tellus sed ex. Quisque tempus sem non augue
+                feugiat dignissim.</p>
+            <p class="quote">
+               "nec massa placerat aliquet. Ut non ligula ut elit tristique sagittis vel eu velit. Mauri"<br>- Ankit Chauhan
+            </p>
+            <p>
+                Lorem <a href="">ipsum</a> dolor sit amet, <i>consectetur adipiscing elit</i>. In <strong>venenatis</strong> id nulla sit amet ornare. Aenean eget eros turpis. Cras non lacinia nisl. Fusce auctor sapien sed lacinia mollis. Suspendisse
+                ut nibh nec massa placerat aliquet. Ut non ligula ut elit tristique sagittis vel eu velit. Mauris faucibus, ante lacinia malesuada condimentum, ligula neque aliquam purus, et consequat libero tellus sed ex. Quisque tempus sem non augue
+                feugiat dignissim.
+            </p>
+            <h3>kdkdsk</h3>
+            <p>
+                 dkf kd lsk k sdlk sdkldsof lksad ksdi lkdsfj lfd</p>
+        </div> -->
+
+        <div class="content" ng-include="article[0].templateUrl"></div>
+    </div>
 </md-content>

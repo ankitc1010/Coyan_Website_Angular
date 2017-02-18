@@ -27,26 +27,26 @@
 
         </md-button>
 
-    
-    </div>    
+
+    </div>
    <div ngf-drop ng-model="picFile" ngf-pattern="image/*"
              class="cropArea" style="width:320px; height:500px">
-            <img-crop image="picFile  | ngfDataUrl"                 
-            result-image="croppedDataUrl" area-type="rectangle" aspect-ratio="1.7" result-image-size='{w: 340,h: 200}' init-max-area="true" ng-init="croppedDataUrl=''"  change-on-fly="true">
+            <img-crop image="picFile  | ngfDataUrl"
+            result-image="croppedDataUrl" area-type="rectangle" aspect-ratio="1.7" result-image-size='{w: 600,h: 388}' init-max-area="true" ng-init="croppedDataUrl=''"  change-on-fly="true">
             </img-crop>
        <!--  <button ng-click="upload(croppedDataUrl)">Submit</button> -->
      <!--   <form> <span class="progress" ng-show="progress >= 0">
           <div style="width:{{progress}}" ng-bind="progress + '%'"></div></span>
        </form> -->
-       
+
     </div>
-    
+
      <div>
-           
+
         </div>
     }
     }
 
     </md-dialog-content>
-      
+
 </md-dialog>

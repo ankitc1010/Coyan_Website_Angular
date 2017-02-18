@@ -9,9 +9,14 @@ var uploadhtml = multer({ dest: 'assets/partials/html' });
 var passport = require('passport');
 var LocalStrategy = require('passport-local');
 var passportLocalMongoose = require('passport-local-mongoose');
-var api_key = 'key-f31b3e83f39afcc3d610b35cbb5a0aa5';
-var Mailgun = require('mailgun').Mailgun;
+var postmark = require("postmark");
+var expressStaticGzip = require("express-static-gzip");
+app.use("/", expressStaticGzip("src"));
+
+// Example request
+var client = new postmark.Client("62efbc5a-6c0d-4652-a548-c7caca61b03b");
 var User =require('./models/user');
+var TechArtha = require('./models/techartha');
 app.use(require("express-session")({
 	secret:"Awesomeness to be achieved",
 	saveUninitialized: false,
@@ -26,8 +31,8 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-// mongoose.connect("mongodb://localhost/"+dbName);
-mongoose.connect("mongodb://ankit:laptop@ds141098.mlab.com:41098/coyan");
+mongoose.connect("mongodb://localhost/"+dbName);
+// mongoose.connect("mongodb://ankit:laptop@ds141098.mlab.com:41098/coyan");
 var ArticleSchema = new mongoose.Schema({
 	name:String,
 	designation:String,
@@ -35,7 +40,9 @@ var ArticleSchema = new mongoose.Schema({
 	img:String,
 	title:String,
 	description:String,
-	templateUrl:String
+	templateUrl:String,
+  subtitle: String,
+  created: Number
 
 });
 var FellowSchema = new mongoose.Schema({
@@ -68,6 +75,54 @@ app.post("/signup", function(req,res){
 		});
 	})
 });
+
+app.post('/contactUs', function(req,res){
+
+console.log(req.body);
+
+client.sendEmail({
+    "From": "contact@coyan.in",
+    "To": "amanalok@coyan.in",
+    "Subject": "Mail up",
+    "HtmlBody": `Dear ${req.body.name},${req.body.email},  <br>
+                ${req.body.text}<br>
+
+                <strong>TEAM COYAN</strong>`
+});
+res.send(true);
+});
+
+
+
+
+
+app.post('/techArthaRegister', function(req,res){
+  console.log(req.body);
+
+  var id = Math.floor(Math.random() * (10000000) + 100000);
+  req.body.id = id;
+
+  client.sendEmail({
+      "From": "registrations@coyan.in",
+      "To": req.body.email,
+      "Subject": "TECH ARTHA Registration",
+      "HtmlBody": `Dear ${req.body.firstName} ${req.body.secondName},<br>
+                  Welcome to Coyan Family!<br>
+                  We are happy to receive your registration for our event TechArtha. Your Coyan id is CO010-${id}, keep a hold of it. We will be contacting you shortly for the process ahead.<br>
+                  Regards,<br>
+                  <strong>TEAM COYAN</strong>`
+  });
+  TechArtha.create(req.body,function(err,techartha){
+		if(err){
+			console.log(err);
+		}
+		else{
+			console.log(techartha);
+
+		}
+	})
+  res.send(true);
+})
 
 
 app.post('/login', function(req, res, next) {
@@ -196,24 +251,27 @@ app.post("/api/articles", function(req,res){
 });
 
 app.post('/sendmail', function(req,res) {
-  var mg = new Mailgun(api_key);
+
+
+
   console.log(req.body.email);
   var object = req.body.email;
   var otp = Math.floor(Math.random() * (10000 - 1000) + 1000);
 
-  var string = "Your otp for registration is " + otp;
-mg.sendText('Coyan Registration <register@mg.coyan.in>', [object],
-'OTP for the registration',
-string,
-'', {},
-function(err) {
-  if (err) console.log('Oh noes: ' + err);
-  else     res.json({otp: otp});
+
+  client.sendEmail({
+      "From": "ankitchauhan@coyan.in",
+      "To": req.body.email,
+      "Subject": "Coyan Registration",
+      "TextBody": `Your otp is ${otp}.`
+  });
+
+res.json({otp: otp});
+
 });
-})
 
 
-app.listen(process.env.PORT, process.env.IP, function(){
+app.listen(process.env.PORT || '3000' ,process.env.IP, function(){
 	console.log("server started");
 })
 // app.listen('3000', function(){

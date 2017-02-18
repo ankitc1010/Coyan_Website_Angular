@@ -4,20 +4,24 @@
   <md-content md-theme="docs-dark" layout-gt-sm="row" layout-align="center center" layout-padding>
     <div>
     <h2>ARTICLE SUBMISSION</h2>
-    
+
       <md-input-container>
         <label>Title</label>
         <input ng-model="article.title" type="text">
       </md-input-container>
-      
+      <md-input-container>
+        <label>Article Subtitle</label>
+        <input ng-model="article.subtitle" type="text">
+      </md-input-container>
+
       <md-input-container class="md-block">
           <label>Description</label>
           <textarea ng-model="article.description" md-maxlength="100" rows="3" md-select-on-focus></textarea>
    </md-input-container>
-      
+
     </div>
     <div>
-    	
+
     </div>
   </md-content>
   <md-content layout="row" layout-align="center center">
@@ -31,13 +35,13 @@
           accept=".html,.htm" ngf-max-height="1000" ngf-max-size="1MB">
       <i class="fa fa-lg fa-html5" ></i></md-button>
 <div ng-bind="article.templateUrl"></div>
-      
+
   </md-content>
-  <md-content layout="row" layout-align="center center"> 		
+  <md-content layout="row" layout-align="center center">
     <md-button class="md-raised md-primary" ng-click="submit()">Submit</md-button>
     <div ng-if="art.progress">hohoh</div>
   </md-content>
-   
+
 </form>
  <!--  <md-content layout-padding>
     <div>

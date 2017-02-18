@@ -14,7 +14,8 @@ var UserSchema = new mongoose.Schema({
 	number:Number,
 	img:String,
 	about:String,
-	designationtwo:String
+	designationtwo:String,
+	isWriter: Boolean
 });
 
 UserSchema.plugin(passportLocalMongoose);

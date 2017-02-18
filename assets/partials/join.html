@@ -6,10 +6,7 @@
         <label>Name</label>
         <input ng-model="unit.name" name="username" type="text">
       </md-input-container>
-      <md-input-container ng-show="!anonymous">
-        <label>Email Id</label>
-        <input ng-model="unit.email" name="password" type="text">
-      </md-input-container>
+
       <md-input-container ng-show="!anonymous">
         <label>Phone Number</label>
         <input ng-model="unit.phoneNumber" name="password" type="text">
@@ -18,10 +15,14 @@
         <label>Age</label>
         <input ng-model="unit.age" name="password" type="text">
       </md-input-container>
+			<md-input-container ng-show="!anonymous" >
+				<label>Email Id</label>
+				<input ng-model="unit.email" name="password" type="text" ng-blur="display()">
+			</md-input-container>
 
 
 
-			<button ng-if="!anonymous" ng-click="generate(e)" class="md-raised md-primary md-button md-ink-ripple">Generate OTP</button>
+			<button ng-show="!anonymous && showIt" ng-click="generate(e)" class="md-raised md-primary md-button md-ink-ripple">Generate OTP</button>
 
 
 
