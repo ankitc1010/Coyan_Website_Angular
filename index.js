@@ -260,7 +260,7 @@ app.post('/sendmail', function(req,res) {
 
 
   client.sendEmail({
-      "From": "ankitchauhan@coyan.in",
+      "From": "registrations@coyan.in",
       "To": req.body.email,
       "Subject": "Coyan Registration",
       "TextBody": `Your otp is ${otp}.`
