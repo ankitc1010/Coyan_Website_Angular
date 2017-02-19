@@ -82,6 +82,11 @@ app.config(function($routeProvider, $mdThemingProvider){
 		}
 	}])
 
+	.controller('eventblack', function() {
+		members();
+	})
+
+
 	.controller('contactUs', ['$http', '$scope', '$mdToast', function($http, $scope, $mdToast) {
 
 
