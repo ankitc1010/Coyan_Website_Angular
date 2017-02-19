@@ -73,7 +73,8 @@ app.config(function($routeProvider, $mdThemingProvider){
 		$scope.display = function() {
 			console.log($scope.useri);
 			$http.post('/techArthaRegister', $scope.useri).success(function(response) {
-				  $mdToast.show($mdToast.simple().textContent('Registered'));
+				  $mdToast.show($mdToast.simple().textContent('Registered').hideDelay(150000).theme('success-toast')
+);
 					$scope.useri= null;
 			}).catch(function(error){
 				console.log(error);
