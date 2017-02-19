@@ -166,7 +166,16 @@ app.post('/update',function(req,res){
 	});
 });
 
+app.get("/showdbtechartha", function(req,res) {
+  TechArtha.find({}, function(err, techartha) {
+    if(err)
+        res.send("Error fetching");
+        else {
+            res.send(techartha);
+        }
 
+  })
+})
 
 app.get("/api/articles", function(req,res){
 	Article.find({}, function(err,article){
