@@ -31,8 +31,8 @@ app.use(passport.session());
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-// mongoose.connect("mongodb://localhost/"+dbName);
-mongoose.connect("mongodb://ankit:laptop@ds141098.mlab.com:41098/coyan");
+mongoose.connect("mongodb://localhost/"+dbName);
+// mongoose.connect("mongodb://ankit:laptop@ds141098.mlab.com:41098/coyan");
 var ArticleSchema = new mongoose.Schema({
 	name:String,
 	designation:String,
@@ -174,6 +174,21 @@ app.get("/showdbtechartha", function(req,res) {
             res.send(techartha);
         }
 
+  })
+})
+
+
+app.post('/checkemailtechartha', function(req,res) {
+  console.log(req.body.email);
+  TechArtha.findOne({'email': req.body.email}, function(err, tech) {
+    if(err) {
+      res.send(true)
+    } else {
+      if(tech===null)
+      res.send(true);
+      else
+      res.send(false);
+    }
   })
 })
 

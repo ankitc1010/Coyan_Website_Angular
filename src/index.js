@@ -80,6 +80,18 @@ app.config(function($routeProvider, $mdThemingProvider){
 				console.log(error);
 			})
 		}
+		$scope.check = function() {
+			$http.post('/checkemailtechartha', $scope.useri).success(function(response) {
+				if(response) {
+
+				} else {
+					$scope.useri.email = null;
+					  $mdToast.show($mdToast.simple().textContent('Already Registered with this email').hideDelay(5000));
+				}
+			}).catch(function(error) {
+				console.log(error);
+			})
+		}
 	}])
 
 	.controller('eventblack', function() {

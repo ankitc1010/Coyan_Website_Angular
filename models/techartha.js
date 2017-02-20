@@ -3,7 +3,7 @@ var mongoose=require("mongoose");
 
 var TechArthaSchema = new mongoose.Schema({
 	firstName: String,
-  lastName: String,
+  secondName: String,
   email:String,
   phoneNumber:Number,
   id: String
