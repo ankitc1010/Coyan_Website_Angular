@@ -9,7 +9,7 @@
 }
 </style>
 
-<div layout="row" layout-align="center center" style="background: url('./assets/blah.jpg'); padding-top:30px; padding-bottom: 50px;">
+<div layout="row" layout-align="center center" style="background: url('./assets/blah.jpg'); padding-top:30px; padding-bottom: 40px;">
     <div  layout="row" layout-xs="column" class="boxi">
       <div flex="30" flex-xs="100" style="background-color:rgba(238,167,0,1); color: #172a2f; align-items: stretch;">
         <center><h2 style="font-weight:100; padding-top:40px">TECH ARTHA</h2>
@@ -28,10 +28,16 @@
            <input type="text" ng-model="useri.secondName" required>
          </md-input-container>
 
+
          <md-input-container class="md-block" style="margin:0">
            <label>Email Address</label>
            <input type="email" ng-model="useri.email" ng-blur="check()" required>
          </md-input-container><br>
+
+         <md-input-container class="md-block" style="margin:0">
+           <label>College</label>
+           <input type="text" ng-model="useri.college" required>
+         </md-input-container>
 
          <md-input-container class="md-block" style="margin:0">
            <label>Phone Number</label>
