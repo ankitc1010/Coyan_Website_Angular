@@ -93,6 +93,23 @@ res.send(true);
 });
 
 
+app.post('/api/techIdCheck', function(req,res) {
+  console.log(req.body);
+  TechArtha.findOne({id: req.body.id}, function(err, obj) {
+    if(err){
+      return res.send(false);
+    } else {
+      if(obj === null) {
+      return  res.send(false);
+      } else {
+        return res.send(true);
+      }
+    }
+  })
+
+});
+
+
 
 
 

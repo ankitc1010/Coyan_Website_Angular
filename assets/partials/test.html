@@ -1,0 +1,28 @@
+<div ng-controller="testController" >
+
+  <div ng-show="!enterStatus" layout="column"  layout-align="center center" layout-padding layout-margin>
+  	<div ng-if="!userauthi.username" style="padding-top:10%">
+  	<div style="font-size:50px">TECH ARTHA TEST</div>
+  					<form>
+  			<md-input-container layout="row">
+
+          <b>CO010-</b><input ng-model="user.id" name="idNumber" type="text">
+        </md-input-container>
+        <md-input-container>
+          <label>Name</label>
+          <input ng-model="user.name" name="idNumber" type="text">
+        </md-input-container>
+
+
+  			<div><button ng-show="!verified && user.name" class="md-raised md-primary md-button md-ink-ripple" ng-click="check()">Verify Id</button>
+        <button ng-show="verified" class="md-raised md-warn md-button md-ink-ripple" ng-click="enter()">Enter Test</button></div>
+  	</form>
+  </div>
+</div>
+  <div ng-show="enterStatus">
+    <div style="padding-top:10%">
+    <div style="font-size:50px">THE COOL TEST</div>
+  </div>
+</div>
+
+</div>

@@ -7,7 +7,8 @@ var TechArthaSchema = new mongoose.Schema({
   email:String,
   phoneNumber:Number,
   id: String,
-	college: String
+	college: String,
+	testGiven: Boolean
 });
 
 module.exports = mongoose.model("TechArtha", TechArthaSchema);

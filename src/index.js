@@ -30,6 +30,9 @@ app.config(function($routeProvider, $mdThemingProvider){
     .when("/form",{
       templateUrl:"assets/partials/form.html"
     })
+		.when("/techArthaTest",{
+      templateUrl:"assets/partials/test.html"
+    })
     .when("/allarticles",{
       templateUrl:"assets/partials/allarticles.html"
     })
@@ -68,6 +71,29 @@ app.config(function($routeProvider, $mdThemingProvider){
       $anchorScroll();
     };
   }])
+
+	.controller('testController',['$http','$scope','$mdToast',function($http, $scope, $mdToast) {
+		function changestate() {
+		 $scope.verified = true;
+		 console.log($scope);
+	 }
+		$scope.check = function() {
+			console.log($scope.user);
+
+			$http.post('/api/techIdCheck', $scope.user).success(function(response) {
+				if(response === true)
+			changestate();
+			}).catch(function(error) {
+				console.log("error");
+			})
+		}
+
+		$scope.enter = function() {
+			$scope.enterStatus = true;
+		}
+
+	}])
+
 
 	.controller('techArtha', ['$http', '$scope', '$mdToast', function($http, $scope, $mdToast) {
 		$scope.display = function() {
