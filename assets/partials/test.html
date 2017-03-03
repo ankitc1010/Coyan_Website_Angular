@@ -1,28 +1,168 @@
+<style>
+.formHeader{
+	float:left;
+	position:fixed;
+
+	top:0;
+	left:0;
+    width:100%;
+    height:250px;
+    background: #6a1b9a; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #6a1b9a 0%, #6a1b9a 50%, #f50057 51%, #f50057 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #6a1b9a 0%,#6a1b9a 50%,#f50057 51%,#f50057 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #6a1b9a 0%,#6a1b9a 50%,#f50057 51%,#f50057 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6a1b9a', endColorstr='#f50057',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+#toolbar{
+  display: none;
+}
+.formContainer {
+  width: 100%;
+  align-items: center;
+}
+
+
+.form{
+  align-self: center;
+	background-color:white;
+
+	width:80%;
+	position:relative;
+	top:130px;
+	border-radius:5px;
+	z-index:1 !important;
+}
+@media (max-width: 767px){
+		.form{
+		width:98%;
+    }
+  }
+</style>
+
 <div ng-controller="testController" >
 
-  <div ng-show="!enterStatus" layout="column"  layout-align="center center" layout-padding layout-margin>
-  	<div ng-if="!userauthi.username" style="padding-top:10%">
-  	<div style="font-size:50px">TECH ARTHA TEST</div>
-  					<form>
-  			<md-input-container layout="row">
+  <div class="formHeader">
 
-          <b>CO010-</b><input ng-model="user.id" name="idNumber" type="text">
-        </md-input-container>
-        <md-input-container>
-          <label>Name</label>
-          <input ng-model="user.name" name="idNumber" type="text">
-        </md-input-container>
+	</div>
+	<div class="formContainer" layout="column" layout-align="center center">
+	<div class="form">
+
+    <div ng-show="!enterStatus" layout="column"  layout-align="center center" layout-padding layout-margin>
+      <div ng-if="!userauthi.username" style="padding-top:10%">
+      <div style="font-size:50px">Tech Artha Test</div>
+              <form>
+          <md-input-container layout="row">
+
+            <b>CO010-</b><input ng-model="user.id" name="idNumber" type="text">
+          </md-input-container>
+          <md-input-container>
+            <label>Name</label>
+            <input ng-model="user.name" name="idNumber" type="text">
+          </md-input-container>
 
 
-  			<div><button ng-show="!verified && user.name" class="md-raised md-primary md-button md-ink-ripple" ng-click="check()">Verify Id</button>
-        <button ng-show="verified" class="md-raised md-warn md-button md-ink-ripple" ng-click="enter()">Enter Test</button></div>
-  	</form>
+          <div><button ng-show="!verified && user.name" class="md-raised md-primary md-button md-ink-ripple" ng-click="check()">Verify Id</button>
+          <button ng-show="verified" class="md-raised md-warn md-button md-ink-ripple" ng-click="enter()">Enter Test</button></div>
+      </form>
+    </div>
   </div>
-</div>
-  <div ng-show="enterStatus">
-    <div style="padding-top:10%">
-    <div style="font-size:50px">THE COOL TEST</div>
+    <div ng-show="enterStatus && !enterTestStatus">
+      <div style="padding-top:10%">
+      <center>  <h1>Your Test starts in - </h1>
+      <h1 style="font-size:50px">{{timer}}</h1>
+    </center>
+    </div>
   </div>
-</div>
+
+  <style>
+  .timerForTest{
+    position: fixed;
+    right:50%;
+    up:10px;
+    padding:10px;
+    background: orange;
+    color:white;
+    align-content:center;
+    font-size: 200%;
+    font-weight: bold;
+  }
+  </style>
+
+  <div ng-show="enterTestStatus && !hasSubmitted">
+
+    <div style="padding-top:10%; padding-left:2%; padding-right:2%">
+      <div class="timerForTest"><center>{{timerForTest}}<center></div>
+      <h1>Your Test </h1>
+    <h4>First Question</h4>
+    <md-radio-group ng-model="user.question1">
+
+        <md-radio-button value="1" class="md-primary">Apple</md-radio-button>
+        <md-radio-button value="2"> Banana </md-radio-button>
+        <md-radio-button value="3">Mango</md-radio-button>
+
+      </md-radio-group>
+      <h4>Second Question</h4>
+      <md-radio-group ng-model="user.question2">
+
+          <md-radio-button value="1" class="md-primary">Apple</md-radio-button>
+          <md-radio-button value="2"> Banana </md-radio-button>
+          <md-radio-button value="3">Mango</md-radio-button>
+
+        </md-radio-group>
+        <h4>Third Question</h4>
+        <md-radio-group ng-model="user.question3">
+
+            <md-radio-button value="1" class="md-primary">Apple</md-radio-button>
+            <md-radio-button value="2"> Banana </md-radio-button>
+            <md-radio-button value="3">Mango</md-radio-button>
+
+          </md-radio-group>
+          <h4>Fourth Question</h4>
+          <md-radio-group ng-model="user.question4">
+
+              <md-radio-button value="1" class="md-primary">Apple</md-radio-button>
+              <md-radio-button value="2"> Banana </md-radio-button>
+              <md-radio-button value="3">Mango</md-radio-button>
+
+            </md-radio-group>
+            <h4>Fifth Question</h4>
+            <md-radio-group ng-model="user.question5">
+
+                <md-radio-button value="1" class="md-primary">Apple</md-radio-button>
+                <md-radio-button value="2"> Banana </md-radio-button>
+                <md-radio-button value="3">Mango</md-radio-button>
+
+              </md-radio-group>
+              <h4>Sixth Question</h4>
+              <md-radio-group ng-model="user.question6">
+
+                  <md-radio-button value="1" class="md-primary">Apple</md-radio-button>
+                  <md-radio-button value="2"> Banana </md-radio-button>
+                  <md-radio-button value="3">Mango</md-radio-button>
+
+                </md-radio-group>
+                <h4>Seventh Question</h4>
+                <md-radio-group ng-model="user.question7">
+
+                    <md-radio-button value="1" class="md-primary">Apple</md-radio-button>
+                    <md-radio-button value="2"> Banana </md-radio-button>
+                    <md-radio-button value="3">Mango</md-radio-button>
+
+                  </md-radio-group>
+
+                  <md-button class="md-raised md-primary" ng-click="submit()">SUBMIT</md-button>
+  </div>
+  </div>
+  <div ng-show="hasSubmitted">
+    <h1>Test Completed
+  </div>
+
+
+
+	</div>
+	</div>
+
+
 
 </div>

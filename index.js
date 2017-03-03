@@ -17,6 +17,7 @@ app.use("/", expressStaticGzip("src"));
 var client = new postmark.Client("62efbc5a-6c0d-4652-a548-c7caca61b03b");
 var User =require('./models/user');
 var TechArtha = require('./models/techartha');
+var TechArthaTest = require('./models/techArthaTest');
 app.use(require("express-session")({
 	secret:"Awesomeness to be achieved",
 	saveUninitialized: false,
@@ -102,7 +103,11 @@ app.post('/api/techIdCheck', function(req,res) {
       if(obj === null) {
       return  res.send(false);
       } else {
-        return res.send(true);
+        if(obj.testGiven)
+        return res.send(false);
+        else {
+          res.send(true)
+        }
       }
     }
   })
@@ -141,7 +146,28 @@ app.post('/techArthaRegister', function(req,res){
   res.send(true);
 })
 
+app.get("/techArthaTestSee", function(req,res) {
+  TechArthaTest.find({}, function(err, tech) {
+    if(err) {
+      res.send(err);
+    } else {
+      res.send(tech);
+    }
+  })
+})
 
+app.post('/techArthaTestStorage', function(req,res){
+  console.log(req.body);
+  TechArthaTest.create(req.body, function(err, tech){
+    if(err) {
+      console.log(err);
+    } else {
+      console.log(tech);
+      res.send(true);
+    }
+  })
+
+})
 app.post('/login', function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
     if (err) {

@@ -72,11 +72,14 @@ app.config(function($routeProvider, $mdThemingProvider){
     };
   }])
 
-	.controller('testController',['$http','$scope','$mdToast',function($http, $scope, $mdToast) {
+	.controller('testController',['$http','$scope','$mdToast', '$interval', function($http, $scope, $mdToast, $interval) {
 		function changestate() {
 		 $scope.verified = true;
+		 $scope.hasSubmitted = false;
 		 console.log($scope);
 	 }
+	 $scope.timer = 10;
+	 $scope.timerForTest = 10;
 		$scope.check = function() {
 			console.log($scope.user);
 
@@ -90,6 +93,41 @@ app.config(function($routeProvider, $mdThemingProvider){
 
 		$scope.enter = function() {
 			$scope.enterStatus = true;
+			var countDownToBegin = $interval(function() {
+				$scope.timer--;
+				console.log($scope.timer);
+				if($scope.timer === 0){
+					$scope.nowEnterTest();
+					$interval.cancel(countDownToBegin);
+				}
+			}, 1000);
+		}
+
+		$scope.nowEnterTest = function() {
+			$scope.enterTestStatus = true;
+			var countDownToBegin = $interval(function() {
+				$scope.timerForTest--;
+				console.log($scope.timerForTest);
+				if($scope.timerForTest === 0 && !$scope.hasSubmitted){
+					$scope.submit();
+						$interval.cancel(countDownToBegin);
+				} else if($scope.hasSubmitted) {
+					$interval.cancel(countDownToBegin);
+				}
+			}, 1000);
+		}
+
+		$scope.submit = function() {
+			$scope.hasSubmitted= true;
+			console.log($scope.user);
+			
+			$http.post('/techArthaTestStorage', $scope.user).success(function(response) {
+				console.log(response);
+			}).catch(function(error) {
+				console.log(error);
+			})
+
+
 		}
 
 	}])
