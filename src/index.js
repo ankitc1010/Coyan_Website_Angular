@@ -123,13 +123,13 @@ app.config(function($routeProvider, $mdThemingProvider){
 		$scope.submit = function() {
 			$scope.hasSubmitted= true;
 			console.log($scope.user);
-			for(var i=0; i< 400;i++){
+
 			$http.post('/techArthaTestStorage', $scope.user).success(function(response) {
 				console.log(response);
 			}).catch(function(error) {
 				console.log(error);
 			})
-		}
+		
 
 		}
 
