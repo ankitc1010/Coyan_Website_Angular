@@ -1,161 +1,443 @@
 <style>
-.formHeader{
-	float:left;
-	position:fixed;
-
-	top:0;
-	left:0;
-    width:100%;
-    height:250px;
-    background: #6a1b9a; /* Old browsers */
-    background: -moz-linear-gradient(-45deg, #6a1b9a 0%, #6a1b9a 50%, #f50057 51%, #f50057 100%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #6a1b9a 0%,#6a1b9a 50%,#f50057 51%,#f50057 100%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, #6a1b9a 0%,#6a1b9a 50%,#f50057 51%,#f50057 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6a1b9a', endColorstr='#f50057',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
-}
-
-#toolbar{
-  display: none;
-}
-.formContainer {
-  width: 100%;
-  align-items: center;
-}
-
-
-.form{
-  align-self: center;
-	background-color:white;
-
-	width:80%;
-	position:relative;
-	top:130px;
-	border-radius:5px;
-	z-index:1 !important;
-}
-@media (max-width: 767px){
-		.form{
-		width:98%;
+    .formHeader {
+        float: left;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 250px;
+        background: #6a1b9a;
+        /* Old browsers */
+        background: -moz-linear-gradient(-45deg, #6a1b9a 0%, #6a1b9a 50%, #f50057 51%, #f50057 100%);
+        /* FF3.6-15 */
+        background: -webkit-linear-gradient(-45deg, #6a1b9a 0%, #6a1b9a 50%, #f50057 51%, #f50057 100%);
+        /* Chrome10-25,Safari5.1-6 */
+        background: linear-gradient(135deg, #6a1b9a 0%, #6a1b9a 50%, #f50057 51%, #f50057 100%);
+        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6a1b9a', endColorstr='#f50057', GradientType=1);
+        /* IE6-9 fallback on horizontal gradient */
     }
-  }
+
+    #toolbar {
+        display: none;
+    }
+
+    .formContainer {
+        width: 100%;
+        align-items: center;
+    }
+
+    .form {
+        align-self: center;
+        background-color: white;
+        width: 80%;
+        position: relative;
+        top: 130px;
+        border-radius: 5px;
+        z-index: 1 !important;
+    }
+
+    @media (max-width: 767px) {
+        .form {
+            width: 98%;
+        }
+    }
 </style>
 
-<div ng-controller="testController" >
+<div ng-controller="testController">
 
-  <div class="formHeader">
+    <div class="formHeader">
 
-	</div>
-	<div class="formContainer" layout="column" layout-align="center center">
-	<div class="form">
-
-    <div ng-show="!enterStatus" layout="column"  layout-align="center center" layout-padding layout-margin>
-      <div ng-if="!userauthi.username" style="padding-top:10%">
-      <div style="font-size:50px">Tech Artha Test</div>
-              <form>
-          <md-input-container layout="row">
-
-            <b>CO010-</b><input ng-model="user.id" name="idNumber" type="text">
-          </md-input-container>
-          <md-input-container>
-            <label>Name</label>
-            <input ng-model="user.name" name="idNumber" type="text">
-          </md-input-container>
-
-
-          <div><button ng-show="!verified && user.name" class="md-raised md-primary md-button md-ink-ripple" ng-click="check()">Verify Id</button>
-          <button ng-show="verified" class="md-raised md-warn md-button md-ink-ripple" ng-click="enter()">Enter Test</button></div>
-      </form>
     </div>
-  </div>
-    <div ng-show="enterStatus && !enterTestStatus">
-      <div style="padding-top:10%">
-      <center>  <h1>Your Test starts in - </h1>
-      <h1 style="font-size:50px">{{timer}}</h1>
-    </center>
-    </div>
-  </div>
+    <div class="formContainer" layout="column" layout-align="center center">
+        <div class="form">
 
-  <style>
-  .timerForTest{
-    position: fixed;
-    right:50%;
-    up:10px;
-    padding:10px;
-    background: orange;
-    color:white;
-    align-content:center;
-    font-size: 200%;
-    font-weight: bold;
-  }
-  </style>
+            <div ng-show="!enterStatus" layout="column" layout-align="center center" layout-padding layout-margin>
+                <div ng-if="!userauthi.username" style="padding-top:10%">
+                    <div style="font-size:50px">Tech Artha Test</div>
+                    <form>
+												<P>Enter COYAN Id:</P>
+                        <md-input-container layout="row">
 
-  <div ng-show="enterTestStatus && !hasSubmitted">
+                            <b>CO010-</b> <input ng-model="user.id" name="idNumber" type="text">
+                        </md-input-container>
+												<P>Enter Your Name:</P>
+                        <md-input-container>
+                            <label>Name</label>
+                            <input ng-model="user.name" name="idNumber" type="text">
+                        </md-input-container>
 
-    <div style="padding-top:10%; padding-left:2%; padding-right:2%">
-      <div class="timerForTest"><center>{{timerForTest}}<center></div>
-      <h1>Your Test </h1>
-    <h4>First Question</h4>
-    <md-radio-group ng-model="user.question1">
 
-        <md-radio-button value="1" class="md-primary">Apple</md-radio-button>
-        <md-radio-button value="2"> Banana </md-radio-button>
-        <md-radio-button value="3">Mango</md-radio-button>
+                        <div><button ng-show="!verified && user.name" class="md-raised md-primary md-button md-ink-ripple" ng-click="check()">Verify Id</button>
+                            <button ng-show="verified" class="md-raised md-warn md-button md-ink-ripple" ng-click="enter()">Enter Test</button></div>
+                    </form>
+                </div>
+            </div>
+            <div ng-show="enterStatus && !enterTestStatus">
+                <div style="padding-top:10%">
+                    <center>
+                        <h1>Your Test starts in - </h1>
+                        <h1 style="font-size:50px">{{timer}} secs</h1>
+												<p>* Attempt the first 8 questions in 18 mins and then start the rest of the questions</p>
+												<p>** Please have a pen and paper by your side during the test</p>
+                    </center>
+                </div>
+            </div>
 
-      </md-radio-group>
-      <h4>Second Question</h4>
-      <md-radio-group ng-model="user.question2">
+            <style>
+                .timerForTest {
+                    position: fixed;
+                    right: 50%;
+                    up: 10px;
+                    padding: 10px;
+                    background: orange;
+                    color: white;
+                    align-content: center;
+                    font-size: 200%;
+                    font-weight: bold;
+                }
+            </style>
 
-          <md-radio-button value="1" class="md-primary">Apple</md-radio-button>
-          <md-radio-button value="2"> Banana </md-radio-button>
-          <md-radio-button value="3">Mango</md-radio-button>
+            <div ng-show="enterTestStatus && !hasSubmitted">
 
-        </md-radio-group>
-        <h4>Third Question</h4>
-        <md-radio-group ng-model="user.question3">
+                <div style="padding-top:10%; padding-left:2%; padding-right:2%">
+                    <div class="timerForTest">
+                        <center>{{timerForTest}} secs
+                            <center>
+                    </div>
+                    <h1>Your Test </h1>
+                    <h4>Q1. If you had all the money and power in the world, what would you do with it? Who would you be?</h4>
+                    <md-input-container class="md-block">
+                        <label>Answer 1</label>
+                        <textarea ng-model="user.question1" md-maxlength="10000" rows="3" md-select-on-focus></textarea>
+                    </md-input-container>
+                    <h4>Q2. Tell me about a time when you took initiative to learn something on your own?</h4>
+                    <md-input-container class="md-block">
+                        <label>Answer 2</label>
+                        <textarea ng-model="user.question2" md-maxlength="10000" rows="3" md-select-on-focus></textarea>
+                    </md-input-container>
+                    <h4>Q3. What would you prefer to do? </h4>
+                    <md-radio-group ng-model="user.question3">
 
-            <md-radio-button value="1" class="md-primary">Apple</md-radio-button>
-            <md-radio-button value="2"> Banana </md-radio-button>
-            <md-radio-button value="3">Mango</md-radio-button>
+                        <md-radio-button value="1" class="md-primary">Get ashamed in trying something new </md-radio-button>
+                        <md-radio-button value="2"> Play safe and learn with your own pace </md-radio-button>
 
-          </md-radio-group>
-          <h4>Fourth Question</h4>
-          <md-radio-group ng-model="user.question4">
 
-              <md-radio-button value="1" class="md-primary">Apple</md-radio-button>
-              <md-radio-button value="2"> Banana </md-radio-button>
-              <md-radio-button value="3">Mango</md-radio-button>
+                    </md-radio-group>
 
-            </md-radio-group>
-            <h4>Fifth Question</h4>
-            <md-radio-group ng-model="user.question5">
+                    <h4>Q4.  Options(choose one)  </h4>
+                    <md-radio-group ng-model="user.question4">
 
-                <md-radio-button value="1" class="md-primary">Apple</md-radio-button>
-                <md-radio-button value="2"> Banana </md-radio-button>
-                <md-radio-button value="3">Mango</md-radio-button>
+                        <md-radio-button value="1" class="md-primary">Impulsive </md-radio-button>
+                        <md-radio-button value="2"> Hard Working </md-radio-button>
+                        <md-radio-button value="3"> Creative </md-radio-button>
+                        <md-radio-button value="4"> Dedicated </md-radio-button>
+                    </md-radio-group>
 
-              </md-radio-group>
-              <h4>Sixth Question</h4>
-              <md-radio-group ng-model="user.question6">
+                    <h4>Q5. If you have to take care of an orphan on his last day living,( dying tomorrow, describe what all would you do with the orphan ) </h4>
+                    <md-input-container class="md-block">
+                        <label>Answer 5</label>
+                        <textarea ng-model="user.question5" md-maxlength="10000" rows="3" md-select-on-focus></textarea>
+                    </md-input-container>
 
-                  <md-radio-button value="1" class="md-primary">Apple</md-radio-button>
-                  <md-radio-button value="2"> Banana </md-radio-button>
-                  <md-radio-button value="3">Mango</md-radio-button>
 
-                </md-radio-group>
-                <h4>Seventh Question</h4>
-                <md-radio-group ng-model="user.question7">
 
-                    <md-radio-button value="1" class="md-primary">Apple</md-radio-button>
-                    <md-radio-button value="2"> Banana </md-radio-button>
-                    <md-radio-button value="3">Mango</md-radio-button>
+                    <h4>Q6. What is that one quality that makes you special, That you want to explore and develop more? </h4>
+                    <md-input-container class="md-block">
+                        <label>Answer 6</label>
+                        <textarea ng-model="user.question6" md-maxlength="10000" rows="3" md-select-on-focus></textarea>
+                    </md-input-container>
 
-                  </md-radio-group>
 
-                  <md-button class="md-raised md-primary" ng-click="submit()">SUBMIT</md-button>
-  </div>
-  </div>
-  <div ng-show="hasSubmitted">
-    <h1>Test Completed
+                    <h4>Q7. What is the one skill you really want to learn and why?  </h4>
+                    <md-input-container class="md-block">
+                        <label>Answer 7</label>
+                        <textarea ng-model="user.question7" md-maxlength="10000" rows="3" md-select-on-focus></textarea>
+                    </md-input-container>
+
+
+                    <h4>Q8. Describe yourself in 100 words?  </h4>
+                    <md-input-container class="md-block">
+                        <label>Answer 8</label>
+                        <textarea ng-model="user.question8" md-maxlength="10000" rows="3" md-select-on-focus></textarea>
+                    </md-input-container>
+
+
+                    <h4>Q9. A clock is started at noon.By 20 minutespast 7,the hour hand has turned through in degrees:</h4>
+                    <md-radio-group ng-model="user.question9">
+
+                        <md-radio-button value="1" class="md-primary">210</md-radio-button>
+                        <md-radio-button value="2"> 215 </md-radio-button>
+                        <md-radio-button value="3">220</md-radio-button>
+                        <md-radio-button value="4">225</md-radio-button>
+
+                    </md-radio-group>
+
+
+                    <h4>Q10. How many times do the hands of a clock coincide in a day?</h4>
+                    <md-radio-group ng-model="user.question10">
+
+                        <md-radio-button value="1" class="md-primary">21</md-radio-button>
+                        <md-radio-button value="2"> 22 </md-radio-button>
+                        <md-radio-button value="3">23</md-radio-button>
+                        <md-radio-button value="4">24</md-radio-button>
+
+                    </md-radio-group>
+
+
+                    <h4>Q11. What is the smallest number that could be expressed as a sum of two cubes in two differnt ways?</h4>
+                    <md-radio-group ng-model="user.question11">
+
+                        <md-radio-button value="1" class="md-primary">4104</md-radio-button>
+                        <md-radio-button value="2"> 1729 </md-radio-button>
+                        <md-radio-button value="3">1072</md-radio-button>
+                        <md-radio-button value="4">13832</md-radio-button>
+
+                    </md-radio-group>
+
+                    <h4>Q12. The cost price of 30 articles is same as selling price for x articles if profit is 25%,what is x? </h4>
+                    <md-radio-group ng-model="user.question12">
+
+                        <md-radio-button value="1" class="md-primary">24</md-radio-button>
+                        <md-radio-button value="2"> 26 </md-radio-button>
+                        <md-radio-button value="3">28</md-radio-button>
+                        <md-radio-button value="4">25</md-radio-button>
+
+                    </md-radio-group>
+
+
+                    <h4>Q13. In a bag there are coins of 25p,15p and 10p in the ratio of 1:2:3.If there is Rs.45 in all,how many 15p coins are there? </h4>
+                    <md-radio-group ng-model="user.question13">
+
+                        <md-radio-button value="1" class="md-primary">60</md-radio-button>
+                        <md-radio-button value="2"> 120 </md-radio-button>
+                        <md-radio-button value="3">240</md-radio-button>
+                        <md-radio-button value="4">cannot be determined</md-radio-button>
+
+                    </md-radio-group>
+
+
+                    <h4>Q14. Statements: All coins are cakes.All chairs are cakes.
+  Conclusions:<br> A.Some chairs are coins.<br>
+  B.No chair is coin.</h4>
+                    <md-radio-group ng-model="user.question14">
+
+                        <md-radio-button value="1" class="md-primary">only conclusion A follows.</md-radio-button>
+                        <md-radio-button value="2">only conclusion B follows.</md-radio-button>
+                        <md-radio-button value="3">Either A or B follows.</md-radio-button>
+                        <md-radio-button value="4">Neither A nor B follows.</md-radio-button>
+
+                    </md-radio-group>
+
+
+                    <h4>Q15. ZA4,Y3B,XC5,W2D,_____</h4>
+                    <md-radio-group ng-model="user.question15">
+
+                        <md-radio-button value="1" class="md-primary">VE4</md-radio-button>
+                        <md-radio-button value="2"> VE6 </md-radio-button>
+                        <md-radio-button value="3">V4E</md-radio-button>
+                        <md-radio-button value="4">VE6</md-radio-button>
+
+                    </md-radio-group>
+
+
+                    <h4>Q16. During the past year,Ankit saw more movies than Ankita.
+  Ankita saw lesser movies than Sid.Sid saw more movies than Ankit.
+  If the first two statements are true,the third statement is</h4>
+                    <md-radio-group ng-model="user.question16">
+
+                        <md-radio-button value="1" class="md-primary">True</md-radio-button>
+                        <md-radio-button value="2"> False </md-radio-button>
+                        <md-radio-button value="3">Uncertain</md-radio-button>
+                        <md-radio-button value="4">None</md-radio-button>
+
+                    </md-radio-group>
+
+
+                    <h4>Q17. A train running at a speed of 120km/hr crosses a pole in 9 seconds.What is the length of the train?</h4>
+                    <md-radio-group ng-model="user.question17">
+
+                        <md-radio-button value="1" class="md-primary">150</md-radio-button>
+                        <md-radio-button value="2"> 180 </md-radio-button>
+                        <md-radio-button value="3"> 240 </md-radio-button>
+                        <md-radio-button value="4"> 300 </md-radio-button>
+
+                    </md-radio-group>
+
+                    <h4>Q18. A man is 25 years older than his son.In 5 years his age will be twicw the age of his son.The ratio of their present ages is?</h4>
+                    <md-radio-group ng-model="user.question18">
+
+                        <md-radio-button value="1" class="md-primary">2:1</md-radio-button>
+                        <md-radio-button value="2"> 7:3 </md-radio-button>
+                        <md-radio-button value="3"> 9:4 </md-radio-button>
+                        <md-radio-button value="4"> 11:7 </md-radio-button>
+
+                    </md-radio-group>
+
+                    <h4>Q19. If 9 spiders make 9 webs in 9 days,then 1 spider will make 1 web in how many days?</h4>
+                    <md-radio-group ng-model="user.question19">
+
+                        <md-radio-button value="1" class="md-primary">1</md-radio-button>
+                        <md-radio-button value="2"> 9/2 </md-radio-button>
+                        <md-radio-button value="3"> 9 </md-radio-button>
+                        <md-radio-button value="4"> 18 </md-radio-button>
+
+                    </md-radio-group>
+
+
+
+                    <h4>Q20. A person crosses 1200m long street in 6 minutes.What is his speed in km/hr?</h4>
+                    <md-radio-group ng-model="user.question20">
+
+                        <md-radio-button value="1" class="md-primary">200</md-radio-button>
+                        <md-radio-button value="2"> 6 </md-radio-button>
+                        <md-radio-button value="3"> 12 </md-radio-button>
+                        <md-radio-button value="4"> 10/3 </md-radio-button>
+
+                    </md-radio-group>
+
+                    <h4>Q21.Odd man out  2,6,12,15,18,22</h4>
+                    <md-radio-group ng-model="user.question21">
+
+                        <md-radio-button value="1" class="md-primary">22</md-radio-button>
+                        <md-radio-button value="2"> 15 </md-radio-button>
+                        <md-radio-button value="3"> 12 </md-radio-button>
+                        <md-radio-button value="4"> 6 </md-radio-button>
+
+                    </md-radio-group>
+
+                    <h4>Q22.The average of 25 numbers is zero.Of them,at most,how many may be greater than zero.</h4>
+                    <md-radio-group ng-model="user.question22">
+
+                        <md-radio-button value="1" class="md-primary">12</md-radio-button>
+                        <md-radio-button value="2"> 1 </md-radio-button>
+                        <md-radio-button value="3"> 24 </md-radio-button>
+                        <md-radio-button value="4"> 23 </md-radio-button>
+
+                    </md-radio-group>
+
+                    <h4>Q23. In one our,a boat goes 13km/hr along the stream and 5km/hr against the stream.The speed of the boat in still water(in km/hr) is</h4>
+                    <md-radio-group ng-model="user.question23">
+
+                        <md-radio-button value="1" class="md-primary">4</md-radio-button>
+                        <md-radio-button value="2"> 6 </md-radio-button>
+                        <md-radio-button value="3"> 7 </md-radio-button>
+                        <md-radio-button value="4"> 9 </md-radio-button>
+
+                    </md-radio-group>
+
+                    <h4>Q24. Window is to pane as book is to </h4>
+                    <md-radio-group ng-model="user.question24">
+
+                        <md-radio-button value="1" class="md-primary">novel</md-radio-button>
+                        <md-radio-button value="2"> glass </md-radio-button>
+                        <md-radio-button value="3"> cover </md-radio-button>
+                        <md-radio-button value="4"> page </md-radio-button>
+
+                    </md-radio-group>
+
+
+                    <h4>Q25. Which word does not belong with the other?</h4>
+                    <md-radio-group ng-model="user.question25">
+
+                        <md-radio-button value="1" class="md-primary">dodge</md-radio-button>
+                        <md-radio-button value="2"> flee </md-radio-button>
+                        <md-radio-button value="3"> duck </md-radio-button>
+                        <md-radio-button value="4"> avoid </md-radio-button>
+
+                    </md-radio-group>
+
+
+                    <h4>Q26. It was<br>
+																												P:in keeping with my mood<br>
+   Q:a soft summer evening<br>
+   R:as I walked sedately<br>
+   S:in the direction of new house<br>
+   The proper sequence should be:</h4>
+                    <md-radio-group ng-model="user.question26">
+
+                        <md-radio-button value="1" class="md-primary">SRPQ</md-radio-button>
+                        <md-radio-button value="2"> QRPS </md-radio-button>
+                        <md-radio-button value="3"> QPRS </md-radio-button>
+                        <md-radio-button value="4"> SPRQ </md-radio-button>
+
+                    </md-radio-group>
+
+
+
+                    <h4>Q27. Nehru spend his childhood __________ Anand Bhawan</h4>
+                    <md-radio-group ng-model="user.question27">
+
+                        <md-radio-button value="1" class="md-primary">at</md-radio-button>
+                        <md-radio-button value="2"> in </md-radio-button>
+                        <md-radio-button value="3"> on </md-radio-button>
+                        <md-radio-button value="4"> across </md-radio-button>
+
+                    </md-radio-group>
+                    <h4>Q28. Spot the error:</h4>
+                    <md-radio-group ng-model="user.question28">
+
+                        <md-radio-button value="1" class="md-primary">hey have been</md-radio-button>
+                        <md-radio-button value="2"> very close friends </md-radio-button>
+                        <md-radio-button value="3"> until they quarrelled </md-radio-button>
+                        <md-radio-button value="4"> No error. </md-radio-button>
+
+                    </md-radio-group>
+                    <h4>Q29. A man has some hens and rabbits.If the number of heads be 48 and no. of feet 140,then no. of hens will be:</h4>
+                    <md-radio-group ng-model="user.question29">
+
+                        <md-radio-button value="1" class="md-primary">22</md-radio-button>
+                        <md-radio-button value="2"> 23 </md-radio-button>
+                        <md-radio-button value="3"> 24 </md-radio-button>
+                        <md-radio-button value="4"> 26 </md-radio-button>
+
+                    </md-radio-group>
+                    <h4>Q30. what should be the next no. 9,7,11,29,111,___</h4>
+                    <md-radio-group ng-model="user.question30">
+
+                        <md-radio-button value="1" class="md-primary">128</md-radio-button>
+                        <md-radio-button value="2"> 227 </md-radio-button>
+                        <md-radio-button value="3"> 349 </md-radio-button>
+                        <md-radio-button value="4"> 549 </md-radio-button>
+
+                    </md-radio-group>
+                    <h4>Q31.Choose correct meaning for the following proverb/idiom<br>To have an axe to grind</h4>
+                    <md-radio-group ng-model="user.question31">
+
+                        <md-radio-button value="1" class="md-primary">A private end to serve</md-radio-button>
+                        <md-radio-button value="2"> To fail to arouse interest </md-radio-button>
+                        <md-radio-button value="3"> to have no result </md-radio-button>
+                        <md-radio-button value="4"> To work for both sides </md-radio-button>
+
+                    </md-radio-group>
+                    <h4>Q32.If one third of one fourth of a no. is 25 then three tenth of the no. is</h4>
+                    <md-radio-group ng-model="user.question32">
+
+                        <md-radio-button value="1" class="md-primary">110 </md-radio-button>
+                        <md-radio-button value="2"> 90</md-radio-button>
+                        <md-radio-button value="3"> 55 </md-radio-button>
+                        <md-radio-button value="4"> 125 </md-radio-button>
+
+                    </md-radio-group>
+                    <h4>Q33.Three times the first of three consecutive even integers is 3 more than twice the third. The third innteger is:</h4>
+                    <md-radio-group ng-model="user.question33">
+
+                        <md-radio-button value="1" class="md-primary">10 </md-radio-button>
+                        <md-radio-button value="2"> 12</md-radio-button>
+                        <md-radio-button value="3"> 14 </md-radio-button>
+                        <md-radio-button value="4"> 16 </md-radio-button>
+
+                    </md-radio-group>
+
+
+
+
+
+                    <md-button class="md-raised md-primary" ng-click="submit()">SUBMIT</md-button>
+                </div>
+            </div>
+            <div ng-show="hasSubmitted">
+                <h1>Test Completed
   </div>
 
 

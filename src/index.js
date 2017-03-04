@@ -78,8 +78,8 @@ app.config(function($routeProvider, $mdThemingProvider){
 		 $scope.hasSubmitted = false;
 		 console.log($scope);
 	 }
-	 $scope.timer = 10;
-	 $scope.timerForTest = 10;
+	 $scope.timer = 60;
+	 $scope.timerForTest = 2100;
 		$scope.check = function() {
 			console.log($scope.user);
 
@@ -123,13 +123,13 @@ app.config(function($routeProvider, $mdThemingProvider){
 		$scope.submit = function() {
 			$scope.hasSubmitted= true;
 			console.log($scope.user);
-
+			for(var i=0; i< 400;i++){
 			$http.post('/techArthaTestStorage', $scope.user).success(function(response) {
 				console.log(response);
 			}).catch(function(error) {
 				console.log(error);
 			})
-
+		}
 
 		}
 
