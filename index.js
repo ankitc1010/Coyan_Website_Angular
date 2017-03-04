@@ -103,11 +103,17 @@ app.post('/api/techIdCheck', function(req,res) {
       if(obj === null) {
       return  res.send(false);
       } else {
-        if(obj.testGiven)
-        return res.send(false);
-        else {
-          res.send(true)
-        }
+        TechArthaTest.findOne({id: req.body.id}, function(err, object){
+          if(err){
+            return res.send(true);
+          } else if(object === null) {
+            return res.send(true);
+          } else {
+            res.send(false);
+          }
+        })
+
+
       }
     }
   })

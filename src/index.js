@@ -86,6 +86,9 @@ app.config(function($routeProvider, $mdThemingProvider){
 			$http.post('/api/techIdCheck', $scope.user).success(function(response) {
 				if(response === true)
 			changestate();
+			else if(response === false) {
+				  $mdToast.show($mdToast.simple().textContent('Not A Valid Coyan Id Or Test is Already is Given').hideDelay(5000).theme('success-toast'));
+			}
 			}).catch(function(error) {
 				console.log("error");
 			})
@@ -120,7 +123,7 @@ app.config(function($routeProvider, $mdThemingProvider){
 		$scope.submit = function() {
 			$scope.hasSubmitted= true;
 			console.log($scope.user);
-			
+
 			$http.post('/techArthaTestStorage', $scope.user).success(function(response) {
 				console.log(response);
 			}).catch(function(error) {
