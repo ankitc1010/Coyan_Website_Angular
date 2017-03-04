@@ -78,8 +78,9 @@ app.config(function($routeProvider, $mdThemingProvider){
 		 $scope.hasSubmitted = false;
 		 console.log($scope);
 	 }
-	 $scope.timer = 60;
+	 $scope.timer = 20;
 	 $scope.timerForTest = 2100;
+	 $scope.render = "35:00";
 		$scope.check = function() {
 			console.log($scope.user);
 
@@ -98,7 +99,7 @@ app.config(function($routeProvider, $mdThemingProvider){
 			$scope.enterStatus = true;
 			var countDownToBegin = $interval(function() {
 				$scope.timer--;
-				console.log($scope.timer);
+
 				if($scope.timer === 0){
 					$scope.nowEnterTest();
 					$interval.cancel(countDownToBegin);
@@ -110,6 +111,16 @@ app.config(function($routeProvider, $mdThemingProvider){
 			$scope.enterTestStatus = true;
 			var countDownToBegin = $interval(function() {
 				$scope.timerForTest--;
+				var seconds = $scope.timerForTest % 60;
+				var minutes = Math.floor($scope.timerForTest / 60);
+				if(seconds < 10){
+					seconds= "0"+seconds;
+				}
+				if(minutes < 10){
+					minutes= "0"+minutes;
+				}
+				$scope.render = minutes + ":" + seconds;
+				console.log($scope.timer);
 				console.log($scope.timerForTest);
 				if($scope.timerForTest === 0 && !$scope.hasSubmitted){
 					$scope.submit();
@@ -129,7 +140,7 @@ app.config(function($routeProvider, $mdThemingProvider){
 			}).catch(function(error) {
 				console.log(error);
 			})
-		
+
 
 		}
 
