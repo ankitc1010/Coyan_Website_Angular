@@ -30,7 +30,7 @@ app.config(function($routeProvider, $mdThemingProvider){
     .when("/form",{
       templateUrl:"assets/partials/form.html"
     })
-		.when("/techArthaTest",{
+		.when("/techArthaTestModule",{
       templateUrl:"assets/partials/test.html"
     })
     .when("/allarticles",{
