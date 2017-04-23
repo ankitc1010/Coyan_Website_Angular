@@ -53,6 +53,9 @@ app.config(function($routeProvider, $mdThemingProvider){
     .when("/article/:id",{
       templateUrl:"assets/partials/articletemplate.html",
       controller:"ArticleDisplayController"
+    })
+		.when("/skillpanther",{
+      templateUrl:"assets/partials/skillpanther.html"
     });
 
 		 $mdThemingProvider.theme('docs-dark', 'default')
@@ -145,7 +148,16 @@ app.config(function($routeProvider, $mdThemingProvider){
 		}
 
 	}])
+	.controller('skillpanther', ['$http', '$scope', '$mdToast', function($http, $scope, $mdToast) {
+		$scope.sendMail = function() {
+			console.log($scope.entity);
+			var that = $scope;
+			$http.post('/skillpanther', $scope.entity).success(function(response) {
+					$mdToast.show($mdToast.simple().textContent('Your Entry is Stored').hideDelay(10000).theme('success-toast'));
+					$scope.entity={};
+		});
 
+	}}])
 
 	.controller('techArtha', ['$http', '$scope', '$mdToast', function($http, $scope, $mdToast) {
 		$scope.display = function() {
@@ -185,6 +197,21 @@ app.config(function($routeProvider, $mdThemingProvider){
 			console.log($scope.userioz);
 			$http.post('/contactUs', $scope.userioz).success(function(response) {
 				  $mdToast.show($mdToast.simple().textContent('Sent'));
+					$scope.userioz= null;
+			}).catch(function(error){
+				console.log(error);
+			})
+		}
+	}])
+
+	.controller('contactUs', ['$http', '$scope', '$mdToast', function($http, $scope, $mdToast) {
+
+
+
+		$scope.sendMail = function() {
+			console.log($scope.userioz);
+			$http.post('/contactUs', $scope.userioz).success(function(response) {
+					$mdToast.show($mdToast.simple().textContent('Sent'));
 					$scope.userioz= null;
 			}).catch(function(error){
 				console.log(error);

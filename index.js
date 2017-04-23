@@ -18,6 +18,8 @@ var client = new postmark.Client("62efbc5a-6c0d-4652-a548-c7caca61b03b");
 var User =require('./models/user');
 var TechArtha = require('./models/techartha');
 var TechArthaTest = require('./models/techArthaTest');
+var SkillPanther = require('./models/skillpanther');
+
 app.use(require("express-session")({
 	secret:"Awesomeness to be achieved",
 	saveUninitialized: false,
@@ -322,6 +324,19 @@ app.post("/api/articles", function(req,res){
 		}
 	})
 });
+
+app.post("/skillpanther", function(req,res) {
+  SkillPanther.create(req.body,function(err,obj){
+		if(err){
+			console.log(err);
+      res.json({status: false})
+		}
+		else{
+			console.log("Success",obj);
+			res.json({status: true});
+		}
+	})
+})
 
 app.post('/sendmail', function(req,res) {
 
