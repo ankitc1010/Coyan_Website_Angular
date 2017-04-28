@@ -12,6 +12,15 @@ app.config(function($routeProvider, $mdThemingProvider){
 			templateUrl:"assets/partials/home1.html"
 
 		})
+		.when("/foundation", {
+      templateUrl:"assets/partials/foundation.html"
+    })
+		.when("/services", {
+      templateUrl:"assets/partials/services.html"
+    })
+		.when("/stafe", {
+      templateUrl:"assets/partials/stafe.html"
+    })
     .when("/about", {
       templateUrl:"assets/partials/about.html"
     })

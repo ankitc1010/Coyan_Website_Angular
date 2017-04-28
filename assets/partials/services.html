@@ -1,0 +1,31 @@
+<div layout="column">
+    <center>
+        <div ng-controller="skillpanther" style="padding-top:10%">
+            <h2>Services</h2>
+            <form ng-submit="sendMail()">
+                <md-input-container>
+                    <label>Name</label>
+                    <input ng-model="entity.name" name="username" type="text" required>
+                </md-input-container>
+                <md-input-container>
+                    <label>Email</label>
+                    <input ng-model="entity.email" name="email" type="email" required>
+                </md-input-container>
+                <md-input-container>
+                    <label>College</label>
+                    <input ng-model="entity.college" name="college" type="text" required>
+                </md-input-container>
+                <md-input-container>
+                    <label>Phone Number</label>
+                    <input ng-model="entity.phone" name="phone" type="number" required>
+                </md-input-container>
+
+
+                <div><button class="md-raised md-primary md-button md-ink-ripple" type="submit">Submit</button></div>
+            </form>
+          
+        </div>
+
+
+    </center>
+</div>
