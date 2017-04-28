@@ -1,11 +1,14 @@
 var mongoose=require("mongoose");
 
 
-var CoyanServicesSchema = new mongoose.Schema({
+var ServicesSchema = new mongoose.Schema({
 	name: String,
   email:String,
   phone:Number,
-	college: String
+	description: String,
+	web: Boolean,
+	marketing: Boolean,
+	anon: Boolean
 });
 
-module.exports = mongoose.model("CoyanService", CoyanServicesSchema);
+module.exports = mongoose.model("Service", ServicesSchema);

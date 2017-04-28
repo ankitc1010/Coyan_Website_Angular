@@ -19,6 +19,7 @@ var User =require('./models/user');
 var TechArtha = require('./models/techartha');
 var TechArthaTest = require('./models/techArthaTest');
 var SkillPanther = require('./models/skillpanther');
+var Service = require('./models/services');
 
 app.use(require("express-session")({
 	secret:"Awesomeness to be achieved",
@@ -327,6 +328,19 @@ app.post("/api/articles", function(req,res){
 
 app.post("/skillpanther", function(req,res) {
   SkillPanther.create(req.body,function(err,obj){
+		if(err){
+			console.log(err);
+      res.json({status: false})
+		}
+		else{
+			console.log("Success",obj);
+			res.json({status: true});
+		}
+	})
+})
+
+app.post("/services", function(req,res) {
+  Service.create(req.body,function(err,obj){
 		if(err){
 			console.log(err);
       res.json({status: false})

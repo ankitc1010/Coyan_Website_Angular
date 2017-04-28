@@ -167,6 +167,16 @@ app.config(function($routeProvider, $mdThemingProvider){
 		});
 
 	}}])
+	.controller('services', ['$http', '$scope', '$mdToast', function($http, $scope, $mdToast) {
+		$scope.sendMail = function() {
+			console.log($scope.entity);
+			var that = $scope;
+			$http.post('/services', $scope.entity).success(function(response) {
+					$mdToast.show($mdToast.simple().textContent('You will be contacted soon').hideDelay(10000).theme('success-toast'));
+					$scope.entity={};
+		});
+
+	}}])
 
 	.controller('techArtha', ['$http', '$scope', '$mdToast', function($http, $scope, $mdToast) {
 		$scope.display = function() {

@@ -1,24 +1,24 @@
 <div flex class="md-whiteframe-24dp awesome default box" md-ink-ripple="white" layout="column" layout-align="end start">
-	<h1 class="awesomeheading">SERVICES</h1>
+	<h1 class="awesomeheading">COYAN</h1>
 </div>
 
 <div flex layout="column" layout-align="center end" style="background: url('assets/header2.jpg') no-repeat !important; background-size:cover !important; color: white !important; padding: 2% !important;     padding-top: 0 !important; width:100%;">
-	<div layout-align="center end" style="padding: 5%; width: 90%; background: rgba(99, 0, 13, 0.75); "><h1>WEB <span style="font-weight:100;">SERVICES</span></h1>
+	<div layout-align="center end" style="padding: 5%; width: 90%; background: rgba(99, 0, 13, 0.75); "><h1>WEB<span style="font-weight:100;">SERVICES</span></h1>
 	<hr align="left" style="  border-top:6px solid rgba(204, 195, 196, 0.67) !important; width: 100%; position:relative !important; top: -16px;"/>
 	<p style="position:relative !important; top: -13px;">FRONTEND | BACKEND | DBMS</p>
 </div>
-<div layout-align="center end" style="padding: 5%; width: 90%; background: rgba(99, 0, 13, 0.75); "><h1> DIGITAL MARKETING <span style="font-weight:100;">SERVICES</span></h1>
+<div layout-align="center end" style="padding: 5%; width: 90%; background: rgba(99, 0, 13, 0.75); "><h1>COYAN <span style="font-weight:100;">FOUNDATION</span></h1>
 <hr align="left" style="  border-top:6px solid rgba(204, 195, 196, 0.67) !important; width: 100%; position:relative !important; top: -16px;"/>
-<p style="position:relative !important; top: -13px;">SMM | SMO | SEO</p>
+<p style="position:relative !important; top: -13px;">STAFE | END2END NGO CONSULTANCY</p>
 </div>
-<div layout-align="center end" style="padding: 5%; width: 90%; background: rgba(99, 0, 13, 0.75); "><h1>PRODUCT DESIGN <span style="font-weight:100;">SERVICES</span></h1>
+<div layout-align="center end" style="padding: 5%; width: 90%; background: rgba(99, 0, 13, 0.75); "><h1>COYAN <span style="font-weight:100;">FOUNDATION</span></h1>
 <hr align="left" style="  border-top:6px solid rgba(204, 195, 196, 0.67) !important; width: 100%; position:relative !important; top: -16px;"/>
-<p style="position:relative !important; top: -13px;">ANALYSIS | CONCEPT | SYNTHESIS</p>
+<p style="position:relative !important; top: -13px;">STAFE | END2END NGO CONSULTANCY</p>
 </div>
 </div>
 <div layout="column">
     <center>
-        <div ng-controller="services" style="padding-top:10%">
+        <div ng-controller="skillpanther" style="padding-top:10%">
             <h2>Services</h2>
             <form ng-submit="sendMail()">
                 <md-input-container>
@@ -30,22 +30,13 @@
                     <input ng-model="entity.email" name="email" type="email" required>
                 </md-input-container>
                 <md-input-container>
+                    <label>College</label>
+                    <input ng-model="entity.college" name="college" type="text" required>
+                </md-input-container>
+                <md-input-container>
                     <label>Phone Number</label>
                     <input ng-model="entity.phone" name="phone" type="number" required>
-                </md-input-container><br/>
-                <md-checkbox ng-model="entity.web" aria-label="Checkbox 1">
-            Web Services
-          </md-checkbox>
-          <md-checkbox ng-model="entity.marketing" aria-label="Checkbox 1">
-            Marketing Services
-          </md-checkbox>
-          <md-checkbox ng-model="entity.anon" aria-label="Checkbox 1">
-            Product Design Services
-          </md-checkbox></br>
-                <md-input-container class="md-block">
-          <label>Description</label>
-          <textarea ng-model="entity.description" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-        </md-input-container>
+                </md-input-container>
 
 
                 <div><button class="md-raised md-primary md-button md-ink-ripple" type="submit">Submit</button></div>
